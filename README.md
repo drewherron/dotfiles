@@ -1,2 +1,2 @@
-# config
+# dotfiles
 Linux dotfiles
