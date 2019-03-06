@@ -40,9 +40,14 @@ set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
+# set background (install feh and uncomment)
+#exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/green-10.jpg
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# reverse/natural scrolling
+exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
