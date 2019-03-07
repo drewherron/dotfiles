@@ -43,6 +43,25 @@ set $hibernate sudo -A systemctl suspend
 # set background
 exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/green-10.jpg
 
+# color defines for zenburn styled i3
+set $bg     #2c2c2e
+set $fg     #9f9f9f
+set $hi     #efef8f
+set $ac     #a0afa0
+set $tx     #040404
+set $ia     #8f8f8f
+set $be     #8faf9f
+set $yw     #ccdc90
+set $gn     #88b090
+set $rd     #e89393
+set $or     #ffa500
+
+# set some nice colors      border     background  text
+client.focused              $or        $or         $tx
+client.unfocused            $bg        $bg         $ia
+client.focused_inactive     $bg        $bg         $ac
+client.urgent               $rd        $rd         $tx
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
