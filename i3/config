@@ -63,6 +63,10 @@ exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
+# Sreen brightness controls (commenting out because it already works)
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
