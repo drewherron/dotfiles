@@ -30,6 +30,7 @@ font pango:monospace 8
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps inner 15
+smart_gaps on
 
 #definitions
 set $term --no-startup-id $TERMINAL
