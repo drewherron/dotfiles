@@ -1,7 +1,8 @@
 # ~/.bashrc
 
 # Aliases
-alias py='python3'
+alias zyp="zypper"
+alias py="python3"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
