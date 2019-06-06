@@ -1,6 +1,7 @@
 # ~/.bashrc
 
 # Aliases
+alias sudo="sudo "
 alias zyp="zypper"
 alias py="python3"
 alias ..="cd .."
