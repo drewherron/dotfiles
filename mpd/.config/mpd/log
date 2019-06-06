@@ -1,0 +1,16 @@
+Jun 06 12:41 : exception: RTIOThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jun 06 12:41 : exception: Failed to open '/home/drew/.config/mpd/state': No such file or directory
+Jun 06 12:41 : avahi: Service 'Music Player @ T420' successfully established.
+Jun 06 13:21 : exception: RTIOThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jun 06 13:21 : exception: Failed to open '/home/drew/.config/mpd/state': No such file or directory
+Jun 06 13:21 : avahi: Service 'Music Player @ T420' successfully established.
+Jun 06 13:26 : client: [0] opened from [::1]:33782
+Jun 06 13:27 : client: [0] closed
+Jun 06 13:33 : update: added /1-03 The Veldt (8 Minute Edit) [feat 1.mp3
+Jun 06 13:33 : update: added /1-03 The Veldt (8 Minute Edit) [feat 1.mp3
+Jun 06 13:33 : client: [1] opened from [::1]:33950
+Jun 06 13:34 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jun 06 13:34 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Jun 06 13:34 : player: played "1-03 The Veldt (8 Minute Edit) [feat 1.mp3"
+Jun 06 13:34 : player: played "1-03 The Veldt (8 Minute Edit) [feat 1.mp3"
+Jun 06 13:34 : client: [1] closed
