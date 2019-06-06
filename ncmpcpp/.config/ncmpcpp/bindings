@@ -627,15 +627,14 @@ def_key "x"
 def_key "P"
   show_playlist_editor
 
-def_key ">"
+def_key "L"
   seek_forward
 
-def_key "<"
+def_key "H"
   seek_backward
 
-def_key "."
+def_key "right"
   next
 
-def_key ","
+def_key "left"
   previous
-
