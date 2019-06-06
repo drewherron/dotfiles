@@ -633,3 +633,9 @@ def_key ">"
 def_key "<"
   seek_backward
 
+def_key "."
+  next
+
+def_key ","
+  previous
+
