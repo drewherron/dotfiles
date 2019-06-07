@@ -25,9 +25,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap ESC key
+inoremap kj <Esc>
+
 " Sets how many lines of history VIM has to remember
 set history=500
-
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -43,8 +45,7 @@ let mapleader = "\<Space>"
 nmap <leader>w :w!<cr>
 
 " :W sudo saves the file
-" (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+command W w !sudo tee % > /dev/null %
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -53,15 +54,12 @@ command W w !sudo tee % > /dev/null
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en'
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-
 " Turn on hybrid numbers
 set relativenumber
 set nu rnu
+
+"Always show current position
+set ruler
 
 " Turn on the Wild menu
 set wildmenu
@@ -73,9 +71,6 @@ if has("win16") || has("win32")
 else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
-
-"Always show current position
-set ruler
 
 " Height of the command bar
 set cmdheight=2
@@ -246,15 +241,37 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
+"Switch buffers
+"map <leader>? :bnext<cr>
+"map <leader>? :bprevious<cr>
+
+" Create a tab for each buffer
+map <leader>bt :tab sball<cr>
+
+" Window split for each buffer (max 6)
+map <leader>bs :6sball<cr>
+
+" Next tab
+map <leader>l :tabn<cr>
+map <leader>h :tabp<cr>
+
+" Go to tab number
+map <leader>1 :tabnext 1<cr>
+map <leader>2 :tabnext 2<cr>
+map <leader>3 :tabnext 3<cr>
+map <leader>4 :tabnext 4<cr>
+map <leader>5 :tabnext 5<cr>
+map <leader>6 :tabnext 6<cr>
+map <leader>7 :tabnext 7<cr>
+map <leader>8 :tabnext 8<cr>
+map <leader>9 :tabnext 9<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-" Choose tab to switch to
-map <leader>t<leader> :tabnext
+" List all tabs
+map <leader>t<leader> :tabs
 " Close all other tabs
 map <leader>to :tabonly<cr>
 
@@ -426,10 +443,20 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Gundo
 nnoremap <leader>u :GundoToggle<CR>
 
+" Jedi-vim
+autocmd FileType python setlocal completeopt-=preview " Don't open docstring window
+" Keybindings - put here to find/avoid conflicts
+let g:jedi#goto_command = "<leader>g"
+let g:jedi#goto_assignments_command = "<leader>ga"
+let g:jedi#goto_definitions_command = "<leader>gd"
+let g:jedi#documentation_command = "<leader>d"
+let g:jedi#usages_command = "<leader>ju"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
 " Mucomplete
 map <leader>ac :MUcompleteAutoToggle<CR>
 set completeopt+=menuone,noselect
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
-" Set delay
-let g:mucomplete#completion_delay = 1
+let g:mucomplete#completion_delay = 1 " Set delay
