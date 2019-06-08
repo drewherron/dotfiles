@@ -1,5 +1,8 @@
 # ~/.bashrc
 
+# Source
+source ~/bin/bashmarks.sh
+
 # Aliases
 alias sudo="sudo "
 alias zyp="zypper"
@@ -11,7 +14,7 @@ alias .....="cd ../../../.."
 
 # History
 export HISTTIMEFORMAT="%d/%m/%y %T "
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 HISTFILESIZE=100000
 HISTSIZE=100000
 
