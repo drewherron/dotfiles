@@ -1,7 +1,8 @@
 # dotfiles
-Random Linux configuration files
+Random Linux configuration files - managed with GNU Stow
 
 Right now these are mostly defaults, just a place to consolidate/store my changes.
 
 I'm slowly configuring multiple machines and vimdiffing my way to what I want. 
-Managing with GNU Stow.
+
+Currently on OpenSUSE (Tumbleweed)
