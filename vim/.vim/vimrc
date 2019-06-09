@@ -25,8 +25,16 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Remap ESC key
 inoremap kj <Esc>
+
+" Set leader key
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+
+" Show keybinding index
+map <leader>i :help index<cr>
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -36,10 +44,6 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" Set leader key
-nnoremap <SPACE> <Nop>
-let mapleader = "\<Space>"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -51,6 +55,7 @@ command W w !sudo tee % > /dev/null %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -116,10 +121,8 @@ if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
 
-
 " Add a bit extra margin to the left
 set foldcolumn=1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -160,6 +163,7 @@ set t_Co=256
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Set a tmp folder for backup files
 " All this did was make a new tmp directory in each working directory...
 "if !isdirectory("/.vim/tmp")
@@ -178,6 +182,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -196,7 +201,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
 """"""""""""""""""""""""""""""
 " => Folding
 """"""""""""""""""""""""""""""
@@ -210,7 +214,6 @@ set foldlevel=10
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -248,11 +251,15 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 " Go to buffer
 nnoremap gb :ls<CR>:b<Space>
 
-" Create a tab for each buffer
-map <leader>bt :tab sball<cr>
+" Split buffer
+map <leader>vs :vs<cr>
+map <leader>sp :sp<cr>
 
 " Window split for each buffer (max 6)
 map <leader>bs :6sball<cr>
+
+" Create a tab for each buffer
+map <leader>bt :tab sball<cr>
 
 " Next tab
 map <leader>l :tabn<cr>
@@ -300,10 +307,10 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 """"""""""""""""""""""""""""""
 " => Status Line
 """"""""""""""""""""""""""""""
+
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
@@ -313,14 +320,14 @@ set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Disables automatic commenting on newline:
+" Disable automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Delete trailing white space on save, useful for some filetypes ;)
@@ -336,23 +343,31 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Register
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Show register
+map <leader>r :reg<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Toggle and untoggle spell checking
 map <leader>sc :setlocal spell!<cr>
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
+" Remaps deleted - learn the defaults:
+" ]s = next bad word
+" [s = previous bad word
+" zg = add to spellfile
+" zw = mark as bad
+" z= = show suggestions
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
@@ -360,6 +375,7 @@ map <leader>pp :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
@@ -413,6 +429,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Using vim-plug:
 " https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
@@ -455,7 +472,7 @@ let g:jedi#goto_definitions_command = "<leader>gd"
 let g:jedi#documentation_command = "<leader>d"
 let g:jedi#usages_command = "<leader>ju"
 let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#rename_command = "<leader>jr"
 
 " Mucomplete
 map <leader>ac :MUcompleteAutoToggle<CR>
