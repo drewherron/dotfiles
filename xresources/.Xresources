@@ -6,33 +6,45 @@
 !*background: #30251D
 
 ! Grey BG
-*background: #151515
+!*background: #151515
 
+! Black BG
+*background: #000000
 
 !black
 *color0:     #393939
 *color8:     #AF875F
+
 !red
 *color1:     #BF1E2D
 *color9:     #E7212A
+
 !green
-*color2:     #9DBA3A
-*color10:    #A9C938
+!*color2:     #9DBA3A
+!*color10:    #A9C938
+!blue
+*color2:     #1CA1DB
+*color10:    #00AFDA
+
 !yellow
 *color3:     #F5B915
 *color11:    #F7D325
+
 !blue
 !*color4:     #1CA1DB
 !*color12:    #00AFDA
 !orange
 *color4:     #FF8700
 *color12:    #FFAF00
+
 !magenta
 *color5:     #652F90
 *color13:    #894E9F
+
 !cyan
 *color6:     #EA7D24
 *color14:    #F79321
+
 !white
 *color7:     #E7E8E9
 *color15:    #F3F3F4
@@ -40,10 +52,10 @@
 !! URxvt Appearance
 URxvt.saveLines:        10000
 URxvt.xftAntialias:     true
-URxvt.font:             xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.boldFont:         xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.italicFont:       xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.bolditalicFont:   xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+URxvt.font:             xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+URxvt.boldFont:         xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+URxvt.italicFont:       xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+URxvt.bolditalicFont:   xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.internalBorder: 0
@@ -54,5 +66,6 @@ URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
 URxvt.depth: 24
+URxvt.geometry: 100x40
 
 URxvt.urlLauncher: firefox
