@@ -7,6 +7,7 @@ source ~/bin/bashmarks.sh
 alias sudo="sudo "
 alias zyp="zypper"
 alias py="python3"
+alias ls="ls --color"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
