@@ -48,6 +48,7 @@ set autoread
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Manjaro conflict?
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null %
 
