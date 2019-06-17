@@ -1,59 +1,6 @@
 !! Colorscheme
-
-!*foreground: #00FF00
-!
-!! Brown BG
-!!*background: #30251D
-!
-!! Grey BG
-!!*background: #151515
-!
-!! Black BG
-!*background: #000000
-!
-!!black
-!*color0:     #393939
-!*color8:     #AF875F
-!
-!!red
-!*color1:     #BF1E2D
-!*color9:     #E7212A
-!
-!!green
-!!*color2:     #9DBA3A
-!!*color10:    #A9C938
-!!blue
-!*color2:     #1CA1DB
-!*color10:    #00AFDA
-!
-!!yellow
-!*color3:     #F5B915
-!*color11:    #F7D325
-!
-!!blue
-!!*color4:     #1CA1DB
-!!*color12:    #00AFDA
-!!orange
-!*color4:     #FF8700
-!*color12:    #FFAF00
-!
-!!magenta
-!*color5:     #652F90
-!*color13:    #894E9F
-!
-!!cyan
-!*color6:     #EA7D24
-!*color14:    #F79321
-!
-!!white
-!*color7:     #E7E8E9
-!*color15:    #F3F3F4
-
-!
-! Homebrew
-! Generated with :
-! XRDB2Xreources.py
-!
+! Homebrew-based:
+! 2nd color in set is lighter
 *.foreground:  #00ff00
 *.background:  #000000
 *.cursorColor: #23ff18
@@ -63,15 +10,15 @@
 *.color8:      #666666
 !
 ! Red
-*.color1:      #990000
-*.color9:      #e50000
+*.color1:      #CC0000
+*.color9:      #D63232
 !
 ! Green
 !*.color2:      #00a600
 !*.color10:     #00d900
 ! Blue
-*.color2:      #0000b2
-*.color10:     #0000ff
+*.color2:      #0096DC
+*.color10:     #4CB5E6
 !
 ! Yellow
 *.color3:      #999900
@@ -85,16 +32,19 @@
 *color12:    #FFAF00
 !
 ! Magenta
-*.color5:      #b200b2
-*.color13:     #e500e5
+*.color5:      #FF00FF
+*.color13:     #FF66FF
 !
 ! Cyan
 *.color6:      #00a6b2
 *.color14:     #00e5e5
 !
 ! White
-*.color7:      #bfbfbf
-*.color15:     #e5e5e5
+!*.color7:      #bfbfbf
+!*.color15:     #e5e5e5
+!make white green
+*.color7:      #00FF00
+*.color15:     #00FF00
 !
 ! Bold, Italic, Underline
 *.colorBD:     #00ff00
@@ -121,3 +71,85 @@ URxvt.depth: 24
 URxvt.geometry: 100x40
 
 URxvt.urlLauncher: firefox
+
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! URxvt*underlineColor:             color
+! URxvt*scrollColor:                color
+! URxvt*troughColor:                color
+! URxvt*highlightColor:             color
+! URxvt*highlightTextColor:         color
+! URxvt*cursorColor:                color
+! URxvt*cursorColor2:               color
+! URxvt*pointerColor:               color
+! URxvt*pointerColor2:              color
+! URxvt*borderColor:                color
+! URxvt*iconFile:                   file
+! URxvt*font:                       fontname
+! URxvt*boldFont:                   fontname
+! URxvt*italicFont:                 fontname
+! URxvt*boldItalicFont:             fontname
+! URxvt*intensityStyles:            boolean
+! URxvt*inputMethod:                name
+! URxvt*preeditType:                style
+! URxvt*imLocale:                   string
+! URxvt*imFont:                     fontname
+! URxvt*title:                      string
+! URxvt*iconName:                   string
+! URxvt*buffered:                   boolean
+! URxvt*depth:                      number
+! URxvt*visual:                     number
+! URxvt*transient-for:              windowid
+! URxvt*override-redirect:          boolean
+! URxvt*hold:                       boolean
+! URxvt*externalBorder:             number
+! URxvt*internalBorder:             number
+! URxvt*borderLess:                 true
+! URxvt*lineSpace:                  number
+! URxvt*letterSpace:                number
+! URxvt*skipBuiltinGlyphs:          boolean
+! URxvt*pointerBlankDelay:          number
+! URxvt*backspacekey:               string
+! URxvt*deletekey:                  string
+! URxvt*print-pipe:                 string
+! URxvt*modifier:                   modifier
+! URxvt*cutchars:                   string
+! URxvt*answerbackString:           string
+! URxvt*secondaryScreen:            boolean
+! URxvt*secondaryScroll:            boolean
+! URxvt*perl-lib:                   string
+! URxvt*perl-eval:                  perl-eval
+! URxvt*perl-ext-common:            string
+! URxvt*perl-ext:                   string
+! URxvt*iso14755:                   boolean
+! URxvt*iso14755_52:                boolean
+! URxvt*xrm:                        string
+! URxvt*keysym.sym:                 keysym
+! URxvt*background.border:          boolean
+! URxvt*background.expr:            string
+! URxvt*background.interval:        seconds
+! URxvt*bell-command:               string
+! URxvt*kuake.hotkey:               string
+! URxvt*matcher.button:             string
+! URxvt*matcher.launcher:           string
+! URxvt*matcher.launcher.*:         string
+! URxvt*matcher.pattern.*:          string
+! URxvt*matcher.rend.*:             string
+! URxvt*remote-clipboard.fetch:     string
+! URxvt*remote-clipboard.store:     string
+! URxvt*searchable-scrollback:      string
+! URxvt*selection-autotransform.*:  string
+! URxvt*selection-pastebin.cmd:     string
+! URxvt*selection-pastebin.url:     string
+! URxvt*selection.pattern-0:        string
+! URxvt*tab-bg:                     colour
+! URxvt*tab-fg:                     colour
+! URxvt*tabbar-bg:                  colour
+! URxvt*tabbar-fg:                  colour
+! URxvt*url-launcher:               string
