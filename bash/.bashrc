@@ -164,3 +164,9 @@ ex ()
 }
 
 # vim:ts=4:sw=4
+
+# PS to change sudo timeout, run:
+# sudo visudo
+# and add the line:
+# Defaults       timestamp_timeout=30
+# (for 30 min)
