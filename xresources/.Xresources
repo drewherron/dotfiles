@@ -54,10 +54,12 @@
 !! URxvt Appearance
 URxvt.saveLines:        10000
 URxvt.xftAntialias:     true
-URxvt.font:             xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.boldFont:         xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.italicFont:       xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.bolditalicFont:   xft:inconsolata:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+
+/* fonts */
+URxvt.font:         xft:Hack-Regular:pixelsize=15,xft:Symbola
+URxvt.boldFont:     xft:Hack-Bold:pixelsize=15:weight=bold,xft:Symbola
+URxvt.italicFont:   xft:Hack-RegularOblique:pixelsize=15:slant=italic,xft:Symbola
+
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.internalBorder: 0
