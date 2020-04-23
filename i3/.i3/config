@@ -282,7 +282,7 @@ bindsym $mod+m bar mode toggle
 
 
 # set background
-#exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/green-10.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/opensuse/green-10.jpg
 
 
 # set some nice colors      border  backgr  text   indic
