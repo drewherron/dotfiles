@@ -25,7 +25,7 @@ alias cp="cp -vi"
 
 # History
 export HISTTIMEFORMAT="%d/%m %T "
-HISTCONTROL=ignoreboth:erasedups
+#HISTCONTROL=ignoreboth:erasedups
 HISTFILESIZE=100000
 HISTSIZE=100000
 
