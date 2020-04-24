@@ -6,6 +6,9 @@ export PS1="\[\e[37m\]\u\[\e[m\]\[\e[37m\]@\[\e[m\]\[\e[37m\]\h\[\e[m\] \[\e[94m
 # Scripts
 source ~/bin/bashmarks.sh
 
+# Paths
+#export PATH="/usr/local/bin:$PATH"
+
 # Aliases
 alias sudo="sudo "
 alias zyp="zypper"
