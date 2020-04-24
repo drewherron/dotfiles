@@ -47,6 +47,8 @@ esac
 # Add your own lines here...
 #
 # Stop resetting wallpaper (i3)
+# to set in the first place:
+# feh --bg-scale ~/Pictures/wallpaper/...
 ~/.fehbg &
 
 # day planer deamon
