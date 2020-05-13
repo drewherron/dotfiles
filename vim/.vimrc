@@ -100,6 +100,9 @@ set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
 
+" Hit Esc to clear search highlighting
+nnoremap <esc> :noh<return><esc>
+
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
