@@ -70,13 +70,8 @@ set ruler
 " Turn on the Wild menu
 set wildmenu
 
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
-else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-endif
+" First tab completes to longest, seconds tab to open menu
+set wildmode=longest:list,full
 
 " Height of the command bar
 set cmdheight=2
@@ -111,6 +106,7 @@ set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -120,12 +116,7 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
-endif
-
-" Add a bit extra margin to the left
+" Add a dash of  margin to the left
 set foldcolumn=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -198,8 +189,8 @@ set noswapfile
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs ;)
-set smarttab
+" This caused problems
+" set smarttab
 
 " 1 tab == 4 spaces
 set shiftwidth=4
@@ -456,14 +447,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" Only use single quotes here
+" Only use single quotes in these URLs
+" Status line...
 Plug 'https://github.com/itchyny/lightline.vim.git'
+"...with git
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
+" Use the next two together for autocomplete
 Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'https://github.com/lifepillar/vim-mucomplete.git'
-Plug 'https://github.com/tpope/vim-surround.git'
+" Improved folding for Python
 Plug 'https://github.com/tmhedberg/SimpylFold.git'
+" File Explorer
 Plug 'scrooloose/nerdtree'
+" Visual undo tree
 Plug 'https://github.com/sjl/gundo.vim.git'
 " Initialize plugin system
 call plug#end()
@@ -473,6 +469,10 @@ map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Gundo
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+
 nnoremap <leader>u :GundoToggle<CR>
 
 " Jedi-vim
@@ -487,7 +487,7 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>jr"
 
 " Mucomplete
-map <leader>ac :MUcompleteAutoToggle<CR>
+map <leader>a :MUcompleteAutoToggle<CR>
 set completeopt+=menuone,noselect
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
