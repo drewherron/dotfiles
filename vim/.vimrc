@@ -148,10 +148,10 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Enable 256 colors
-"set t_Co=256
+set t_Co=256
 
 " This works better in urxvt-256 for some reason
-set t_Co=8
+"set t_Co=8
 
 " Diff colors
 hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
@@ -458,6 +458,8 @@ Plug 'https://github.com/tmhedberg/SimpylFold.git'
 Plug 'scrooloose/nerdtree'
 " Visual undo tree
 Plug 'https://github.com/sjl/gundo.vim.git'
+" Colors to hex
+Plug 'https://github.com/chrisbra/Colorizer.git'
 " Initialize plugin system
 call plug#end()
 
@@ -489,3 +491,6 @@ set completeopt+=menuone,noselect
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
 let g:mucomplete#completion_delay = 1 " Set delay
+
+" Colorizer
+map leader<ch> :ColorHighlight<CR>
