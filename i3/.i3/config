@@ -55,7 +55,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+#exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+exec --no-startup-id synclient VertScrollDelta=-111
 
 # start a terminal
 bindsym $mod+Return exec urxvt
@@ -282,7 +283,7 @@ bindsym $mod+m bar mode toggle
 
 
 # set background
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/opensuse/green-10.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper/opensuse/geeko-3200x2000.jpg
 
 
 # set some nice colors      border  backgr  text   indic

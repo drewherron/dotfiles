@@ -72,6 +72,11 @@ URxvt.geometry: 100x40
 
 URxvt.urlLauncher: firefox
 
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.perl-ext-common:  ...,resize-font,...
+
 Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
