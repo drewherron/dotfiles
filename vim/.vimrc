@@ -493,4 +493,4 @@ set belloff+=ctrlg " If Vim beeps during completion
 let g:mucomplete#completion_delay = 1 " Set delay
 
 " Colorizer
-map leader<ch> :ColorHighlight<CR>
+map <leader>ch :ColorHighlight<CR>
