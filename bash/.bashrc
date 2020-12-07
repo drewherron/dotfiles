@@ -1,7 +1,8 @@
 # ~/.bashrc
 
 # Prompt
-export PS1="\[\e[37m\]\u\[\e[m\]\[\e[37m\]@\[\e[m\]\[\e[37m\]\h\[\e[m\] \[\e[94m\]\W\[\e[m\]\[\e[37m\]\\$\[\e[m\] "
+#This isn't great. Learn more before you try to get fancy.
+#export PS1="\[\e[37m\]\u\[\e[m\]\[\e[37m\]@\[\e[m\]\[\e[37m\]\h\[\e[m\] \[\e[94m\]\W\[\e[m\]\[\e[37m\]\\$\[\e[m\] "
 
 # Scripts
 source ~/bin/bashmarks.sh
