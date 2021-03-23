@@ -1,6 +1,6 @@
 # dotfiles
 Random Linux configuration files - managed with GNU Stow
 
-I'm slowly configuring multiple machines and vimdiffing my way to what I want. 
+I'm distrohopping on multiple machines and slowly vimdiffing my way to what I want. 
 
-Currently on OpenSUSE (Leap)
+Mainly on OpenSUSE Leap right now.
