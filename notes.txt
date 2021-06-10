@@ -1,5 +1,7 @@
 Reminder to self
 
+First, remember that this is meant for the home folder (stow's target directory is the parent of where it's invoked).
+
 Stow will symlink at the lowest level it can in the directory structure.
 
 e.g. If you want to stow your vimrc, but not get all the plugin files back in your git repo, make the .vim folder first, then the symlink will be vimrc, not ~/.vim/
