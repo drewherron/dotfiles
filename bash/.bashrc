@@ -1,177 +1,120 @@
-# ~/.bashrc
-
-# Prompt
-#This isn't great. Learn more before you try to get fancy.
-#export PS1="\[\e[37m\]\u\[\e[m\]\[\e[37m\]@\[\e[m\]\[\e[37m\]\h\[\e[m\] \[\e[94m\]\W\[\e[m\]\[\e[37m\]\\$\[\e[m\] "
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # Scripts
 source ~/bin/bashmarks.sh
 
-# Paths
-#export PATH="/usr/local/bin:$PATH"
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# Aliases
-alias sudo="sudo "
-alias zyp="zypper"
-alias py="python3"
-alias ls="ls --color"
-alias la="ls -hal --color"
-alias tree="tree -C"
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias mv="mv -v"
-alias rm="rm -v"
-alias cp="cp -vi"
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# History
-export HISTTIMEFORMAT="%d/%m %T "
-#HISTCONTROL=ignoreboth:erasedups
-HISTFILESIZE=100000
-HISTSIZE=100000
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-# Enable en_US locale w/ utf-8 encodings if not already configured
-: ${LANG:="en_US.UTF-8"}
-: ${LANGUAGE:="en"}
-: ${LC_CTYPE:="en_US.UTF-8"}
-: ${LC_ALL:="en_US.UTF-8"}
-export LANG LANGUAGE LC_CTYPE LC_ALL
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
-# Use vim editor, fall back to vi
-EDITOR=vi
-if [ -n "$(command -v vim)" ]; then
-    EDITOR=vim
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
-export EDITOR
 
-# Activate vi mode with <Escape>
-set -o vi
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
 
-# disable git gui authentication (gnome-ssh-askpass)
-[ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
-export GIT_ASKPASS=
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
 
-# Prevent doublesourcing
-if [ -z "$BASHRCSOURCED" ]; then
-  BASHRCSOURCED="Y"
-
-  # are we an interactive shell?
-  if [ "$PS1" ]; then
-    if [ -z "$PROMPT_COMMAND" ]; then
-      case $TERM in
-      xterm*|vte*)
-        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
-            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
-        elif [ "${VTE_VERSION:-0}" -ge 3405 ]; then
-            PROMPT_COMMAND="__vte_prompt_command"
-        else
-            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
-        fi
-        ;;
-      screen*)
-        if [ -e /etc/sysconfig/bash-prompt-screen ]; then
-            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
-        else
-            PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
-        fi
-        ;;
-      *)
-        [ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default
-        ;;
-      esac
-    fi
-    # Turn on parallel history
-    shopt -s histappend
-    history -a
-    # Turn on checkwinsize
-    shopt -s checkwinsize
-    [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
-    # You might want to have e.g. tty in prompt (e.g. more virtual machines)
-    # and console windows
-    # If you want to do so, just add e.g.
-    # if [ "$PS1" ]; then
-    #   PS1="[\u@\h:\l \W]\\$ "
-    # fi
-    # to your custom modification shell script in /etc/profile.d/ directory
-  fi
-
-  if ! shopt -q login_shell ; then # We're not a login shell
-    # Need to redefine pathmunge, it gets undefined at the end of /etc/profile
-    pathmunge () {
-        case ":${PATH}:" in
-            *:"$1":*)
-                ;;
-            *)
-                if [ "$2" = "after" ] ; then
-                    PATH=$PATH:$1
-                else
-                    PATH=$1:$PATH
-                fi
-        esac
-    }
-
-    # By default, we want umask to get set. This sets it for non-login shell.
-    # Current threshold for system reserved uid/gids is 200
-    # You could check uidgid reservation validity in
-    # /usr/share/doc/setup-*/uidgid file
-    if [ $UID -gt 199 ] && [ "`id -gn`" = "`id -un`" ]; then
-       umask 002
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-       umask 022
+	color_prompt=
     fi
-
-    SHELL=/bin/bash
-    # Only display echos from profile.d scripts if we are no login shell
-    # and interactive - otherwise just process them to set envvars
-    for i in /etc/profile.d/*.sh; do
-        if [ -r "$i" ]; then
-            if [ "$PS1" ]; then
-                . "$i"
-            else
-                . "$i" >/dev/null
-            fi
-        fi
-    done
-
-    unset i
-    unset -f pathmunge
-  fi
-
 fi
 
-#
-# # ex - archive extractor
-# # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
   fi
-}
-
-# vim:ts=4:sw=4
-
-# PS to change sudo timeout, run:
-# sudo visudo
-# and add the line:
-# Defaults       timestamp_timeout=30
-# (for 30 min)
+fi
