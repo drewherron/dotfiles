@@ -58,7 +58,7 @@ URxvt.font:             xft:Source Code Pro Semibold:style=Semibold:pixelsize=14
 URxvt.boldFont:         xft:Source Code Pro:style=Bold:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
 URxvt.italicFont:       xft:Source Code Pro:style=Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
 URxvt.bolditalicFont:   xft:Source Code Pro:style=Bold Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-URxvt.letterSpace: -1
+URxvt.letterSpace: -1.5
 URxvt.lineSpace: 0
 URxvt.internalBorder: 0
 URxvt.cursorBlink: true
