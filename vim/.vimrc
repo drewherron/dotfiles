@@ -1,33 +1,37 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Starting out with vimrc by Amir Salihefendic — @amix3k
-" https://github.com/amix/vimrc
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Folding
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"    -> Plugins
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""
+"" Remaps ""
+""""""""""""
 
 " Remap ESC key
 inoremap kj <Esc>
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+" Move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" Fast moving
+"nnoremap H ^
+"nnoremap L $
+"nnoremap J <C-d>
+"nnoremap K <C-u>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+""""""""""""
+"" Leader ""
+""""""""""""
 
 " Set leader key
 nnoremap <SPACE> <Nop>
@@ -35,6 +39,12 @@ let mapleader = "\<Space>"
 
 " Show keybinding index
 map <leader>i :help index<cr>
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -45,17 +55,9 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Fast saving
-nmap <leader>w :w!<cr>
-
 " Manjaro conflict?
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null %
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -116,10 +118,6 @@ set tm=500
 " Add a dash of  margin to the left
 set foldcolumn=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Enable syntax highlighting
 syntax enable
 
@@ -159,11 +157,6 @@ hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
 hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
 hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Set a tmp folder for backup files
 " All this did was make a new tmp directory in each working directory...
 "if !isdirectory("/.vim/tmp")
@@ -178,10 +171,6 @@ hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
 set nobackup
 set nowb
 set noswapfile
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use spaces instead of tabs
 set expandtab
@@ -201,42 +190,11 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-""""""""""""""""""""""""""""""
-" => Folding
-""""""""""""""""""""""""""""""
-
 set foldlevel=10
 
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
-" Fast moving
-nnoremap H ^
-nnoremap L $
-nnoremap J <C-d>
-nnoremap K <C-u>
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+""""""""""""""""""""
+"" Tabs + Buffers ""
+""""""""""""""""""""
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -307,10 +265,6 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-""""""""""""""""""""""""""""""
-" => Status Line
-""""""""""""""""""""""""""""""
-
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
@@ -319,13 +273,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Remap VIM 0 to first non-blank character
-map 0 ^
 
 " Disable automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -343,16 +290,8 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Register
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Show register
 map <leader>r :reg<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Toggle and untoggle spell checking
 map <leader>sc :setlocal spell!<cr>
@@ -364,17 +303,12 @@ map <leader>sc :setlocal spell!<cr>
 " zw = mark as bad
 " z= = show suggestions
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""
+"" Functions ""
+"""""""""""""""
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -426,9 +360,9 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""
+"" Plugins ""
+"""""""""""""
 
 " Using vim-plug:
 " https://github.com/junegunn/vim-plug
