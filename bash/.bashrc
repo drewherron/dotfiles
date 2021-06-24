@@ -1,6 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# Starting with the default Ubuntu bashrc and only adding what I fully understand
+
+# Paths
+#export PATH="/usr/local/bin:$PATH"
 
 # Scripts
 source ~/bin/bashmarks.sh
@@ -18,9 +22,12 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# History
+export HISTTIMEFORMAT="%d/%m %T "
+#HISTCONTROL=ignoreboth:erasedups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -37,6 +44,17 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
+
+# Use vim editor, fall back to vi
+EDITOR=vi
+if [ -n "$(command -v vim)" ]; then
+    EDITOR=vim
+fi
+export EDITOR
+
+# Activate vi mode with <Escape>
+set -o vi
+
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
