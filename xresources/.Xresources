@@ -44,7 +44,8 @@ Xft.lcdfilter: lcddefault
 ! URxvt*boldFont:                   fontname
 ! URxvt*italicFont:                 fontname
 ! URxvt*boldItalicFont:             fontname
-! URxvt*intensityStyles:            boolean ! URxvt*inputMethod:                name
+! URxvt*intensityStyles:            boolean 
+! URxvt*inputMethod:                name
 ! URxvt*preeditType:                style
 ! URxvt*imLocale:                   string
 ! URxvt*imFont:                     fontname
@@ -152,26 +153,26 @@ Xft.lcdfilter: lcddefault
 ! *.foreground: #282828
 ! st.alpha: 0.9
 
-! brogrammer:
-*.foreground:  #d6dbe5
-*.background:  #131313
-*.color0:      #1f1f1f
-*.color8:      #d6dbe5
-*.color1:      #f81118
-*.color9:      #de352e
-*.color2:      #2dc55e
-*.color10:     #1dd361
-*.color3:      #ecba0f
-*.color11:     #f3bd09
-*.color4:      #2a84d2
-*.color12:     #1081d6
-*.color5:      #4e5ab7
-*.color13:     #5350b9
-*.color6:      #1081d6
-*.color14:     #0f7ddb
-*.color7:      #d6dbe5
-*.color15:     #ffffff
-*.colorBD:     #d6dbe5
+! ! brogrammer:
+! *.foreground:  #d6dbe5
+! *.background:  #131313
+! *.color0:      #1f1f1f
+! *.color8:      #d6dbe5
+! *.color1:      #f81118
+! *.color9:      #de352e
+! *.color2:      #2dc55e
+! *.color10:     #1dd361
+! *.color3:      #ecba0f
+! *.color11:     #f3bd09
+! *.color4:      #2a84d2
+! *.color12:     #1081d6
+! *.color5:      #4e5ab7
+! *.color13:     #5350b9
+! *.color6:      #1081d6
+! *.color14:     #0f7ddb
+! *.color7:      #d6dbe5
+! *.color15:     #ffffff
+! *.colorBD:     #d6dbe5
 
 ! base16
 ! *.color0:       #181818
@@ -248,6 +249,116 @@ Xft.lcdfilter: lcddefault
 ! *.color7:     #BFBFBF
 ! *.color15:    #E6E6E6
 
+! !DOOMICIDE darkocean
+! !Black
+! URxvt.color0:    #000000
+! URxvt.color8:    #38372c
+! !Red
+! URxvt.color1:    #571dc2
+! URxvt.color9:    #7c54b0
+! !Green
+! URxvt.color2:    #14db49
+! URxvt.color10:    #a2e655
+! !Yellow
+! URxvt.color3:    #403d70
+! URxvt.color11:    #9C6F59
+! !Blue
+! URxvt.color4:    #385a70
+! URxvt.color12:    #323f5c
+! !Magenta
+! URxvt.color5:    #384894
+! URxvt.color13:    #5e6c99
+! !Cyan
+! URxvt.color6:    #4F3A5E
+! URxvt.color14:    #667d77
+! !White
+! URxvt.color7:    #999999
+! URxvt.color15:    #ffffff
+! Rxvt.colorUL: 9
+! URxvt.background: #000000
+! URxvt.foreground: #ffffff
+
 ! *.background: .color0
 ! *.color256: 0#1d2021
 ! *.color257: 15#ebdbb2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Homebrew-based:
+! ! 2nd color in set is lighter
+! *.foreground:  #00ff00
+! *.background:  #000000
+! *.cursorColor: #23ff18
+! !
+! ! Black
+! *.color0:      #000000
+! *.color8:      #666666
+! !
+! ! Red
+! *.color1:      #CC0000
+! *.color9:      #D63232
+! !
+! ! Green
+! !*.color2:      #00a600
+! !*.color10:     #00d900
+! ! Blue
+! *.color2:      #0096DC
+! *.color10:     #4CB5E6
+! !
+! ! Yellow
+! *.color3:      #999900
+! *.color11:     #e5e500
+! !
+! ! Blue
+! !*.color4:      #0000b2
+! !*.color12:     #0000ff
+! ! Orange
+! *color4:     #FF8700
+! *color12:    #FFAF00
+! !
+! ! Magenta
+! *.color5:      #FF00FF
+! *.color13:     #FF66FF
+! !
+! ! Cyan
+! *.color6:      #00a6b2
+! *.color14:     #00e5e5
+! !
+! ! White
+! !*.color7:      #bfbfbf
+! !*.color15:     #e5e5e5
+! !make white green
+! *.color7:      #00FF00
+! *.color15:     #00FF00
+! !
+! ! Bold, Italic, Underline
+! *.colorBD:     #00ff00
+! !*.colorIT:
+! !*.colorUL:
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Yax
+! foreground/background
+URxvt*background: #111111
+URxvt*foreground: #00c929
+! black
+URxvt.color0  : #000000
+URxvt.color8  : #555555
+! red
+URxvt.color1  : #AA0000
+URxvt.color9  : #FF5555
+! green
+URxvt.color2  : #00c929
+URxvt.color10 : #55FF55
+! yellow
+URxvt.color3  : #AA5500
+URxvt.color11 : #FFFF55
+! orange
+URxvt.color4  : #eb7f23
+URxvt.color12 : #eb7f23
+! magenta
+URxvt.color5  : #AA00AA
+URxvt.color13 : #FF55FF
+! cyan
+URxvt.color6  : #00AAAA
+URxvt.color14 : #55FFFF
+! white
+URxvt.color7  : #AAAAAA
+URxvt.color15 : #FFFFFF
