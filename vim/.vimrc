@@ -21,10 +21,15 @@ nnoremap k gk
 "nnoremap K <C-u>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" For now stealing these two from above for pgup/pgdown
+" Consider maybe using to change tabs
+map <C-j> <C-d>
+map <C-k> <C-u>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
@@ -45,6 +50,7 @@ nmap <leader>w :w!<cr>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
+
 
 " Sets how many lines of history VIM has to remember
 set history=500
