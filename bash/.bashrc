@@ -155,3 +155,7 @@ extract ()
     echo "'$1' is not a valid file"
   fi
 }
+
+function cd {
+    builtin cd "$@" && ls -F
+    }
