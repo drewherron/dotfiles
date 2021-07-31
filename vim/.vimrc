@@ -48,6 +48,9 @@ map <leader>i :help index<cr>
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Fast quitting
+nmap <leader>q :q<cr>
+
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
@@ -124,6 +127,11 @@ set tm=500
 " Add a dash of  margin to the left
 set foldcolumn=1
 
+
+""""""""""""
+"" Colors ""
+""""""""""""
+
 " Enable syntax highlighting
 syntax enable
 
@@ -145,12 +153,6 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
 " Enable 256 colors
 set t_Co=256
 
@@ -162,6 +164,17 @@ hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
 hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
 hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
 hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
+
+
+"""""""""""
+"" Files ""
+"""""""""""
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
 
 " Set a tmp folder for backup files
 " All this did was make a new tmp directory in each working directory...
