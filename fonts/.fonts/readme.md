@@ -1,3 +1,7 @@
 Don't forget:
-after stowing the fonts folder,
-use `fc-cache -f`
+
+After stowing the fonts folder,
+use `fc-cache -vf`
+
+You can verify install with:
+`fc-list | grep "font name"`
