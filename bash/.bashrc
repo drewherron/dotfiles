@@ -132,7 +132,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# # ex - archive extractor
+# # extact - archive extractor
 # # usage: extract <file>
 extract ()
 {
