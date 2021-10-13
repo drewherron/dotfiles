@@ -15,3 +15,5 @@ alias gh="history|grep"
 alias trash="mv --force -t ~/.local/share/Trash/files"
 alias grep="grep --color"
 alias bashreload="source ~/.bashrc && echo Bash config reloaded"
+
+alias zyp="zypper"
