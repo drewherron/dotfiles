@@ -9,11 +9,11 @@
 [delta]
 	features = line-numbers decorations
 	line-numbers = true
-[alias]
-	a = add --all
-	b = branch
-	c = commit
-	cm = commit -m
-	d = diff
-	p = push
-	s = status
+#[alias]
+#	a = add --all
+#	b = branch
+#	c = commit
+#	cm = commit -m
+#	d = diff
+#	p = push
+#	s = status
