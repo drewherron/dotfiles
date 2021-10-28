@@ -1,7 +1,6 @@
 # dotfiles
-Random Linux configuration files - managed with GNU Stow
+Just my random Linux configuration files.
 
-Remember to clone this into your home directory.
+Managing these with GNU Stow.
 
-Where it makes a difference (it probably won't) I'm on Ubuntu now.
-
+I'm usually either on Ubuntu or OpenSUSE, but that probably won't make any difference here.
