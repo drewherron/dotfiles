@@ -34,9 +34,9 @@ map <C-k> <C-u>
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-""""""""""""
-"" Leader ""
-""""""""""""
+""""""""""""""""
+"" Leader Key ""
+""""""""""""""""
 
 " Set leader key
 nnoremap <SPACE> <Nop>
@@ -103,7 +103,7 @@ set smartcase
 " Highlight search results
 set hlsearch
 
-" Makes search act like search in modern browsers
+" Incremental search
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
@@ -118,13 +118,13 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" No annoying sound on errors
+" No sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
 
-" Add a dash of  margin to the left
+" Add some margin to the left
 set foldcolumn=1
 
 
@@ -281,7 +281,7 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -337,7 +337,7 @@ function! HasPaste()
     return ''
 endfunction
 
-" Don't close window, when deleting a buffer
+" Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
