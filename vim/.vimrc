@@ -136,6 +136,8 @@ set foldcolumn=1
 syntax enable
 
 " Colorscheme
+set termguicolors
+
 try
     colorscheme nachtleben
 catch
