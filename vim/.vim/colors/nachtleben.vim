@@ -14,17 +14,17 @@ endif
 
 let g:colors_name='nachtleben' " }}}
 
+let s:blac = '#000000' " black
+let s:dgra = '#1e1c40' " dark gray
 let s:mred = '#ec224e' " red
 let s:dora = '#ec6c39' " dark orange
 let s:lora = '#f39e35' " light orange
 let s:yell = '#fed522' " yellow
-let s:gree = '#0cc531' " green
+let s:gree = '#12CA07' " green
 let s:lblu = '#06bed9' " light blue
 let s:dblu = '#327ec9' " dark blue
 let s:mage = '#c026c3' " magenta
 
-let s:blac = '#040409' " bluish black
-let s:dgra = '#1e1c40' " dark gray
 
 " Highlight function {{{
 function! s:hi(group, fg, bg, style, special)
@@ -58,7 +58,7 @@ call s:hi('IncSearch',        'NONE', 'NONE', 'INVERSE', '')
 call s:hi('Search',           s:blac, s:dblu, '', '')
 call s:hi('MoreMsg',          s:blac, s:yell, 'NONE', '')
 call s:hi('ModeMsg',          s:blac, s:yell, 'NONE', '')
-call s:hi('LineNr',           s:dblu, s:blac, '', '')
+call s:hi('LineNr',           s:yell, s:blac, '', '')
 call s:hi('CursorLineNr',     s:lora, s:dgra, 'NONE', '')
 call s:hi('Question',         s:blac, s:yell, 'NONE', '')
 call s:hi('StatusLine',       s:blac, s:dblu, 'NONE', '')
@@ -93,9 +93,9 @@ call s:hi('CursorLine',       'NONE', s:dgra, '', '')
 call s:hi('ColorColumn',      'NONE', s:dgra, '', '')
 call s:hi('StatusLineTerm',   s:blac, s:dblu, 'NONE', '')
 call s:hi('StatusLineTermNC', s:dblu, s:blac, '', '')
-call s:hi('Cursor',           s:blac, s:lora, '', '')
-call s:hi('lCursor',          s:blac, s:lora, '', '')
-call s:hi('MatchParen',       s:blac, s:dblu, '', '')
+call s:hi('Cursor',           s:blac, s:gree, '', '')
+call s:hi('lCursor',          s:blac, s:gree, '', '')
+call s:hi('MatchParen',       s:blac, s:yell, '', '')
 call s:hi('ToolbarLine',      s:lora, s:blac, '', '')
 call s:hi('ToolbarButton',    s:lora, s:blac, 'NONE', '')
 call s:hi('Comment',          s:gree, s:blac, '', '')
