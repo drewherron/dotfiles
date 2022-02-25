@@ -1,7 +1,7 @@
 "    _  __         __   __  __    __
 "   / |/ /__ _____/ /  / /_/ /__ / /  ___ ___     /  nachtleben.vim - Vim color file
 "  /    / _ `/ __/ _ \/ __/ / -_) _ \/ -_) _ \   /  Author: <schickele|you~know~what|web.de>
-" /_/|_/\_,_/\__/_//_/\__/_/\__/_.__/\__/_//_/  /  Created: 2018-11 | Last change: 2019-02-20
+" /_/|_/\_,_/\__/_//_/\__/_/\__/_.__/\__/_//_/  /  Created: 2018-11 | Last change: 2020-04-02
 
 " Init {{{
 hi clear
@@ -14,17 +14,17 @@ endif
 
 let g:colors_name='nachtleben' " }}}
 
-let s:blac = '#000000' " black
-let s:dgra = '#1e1c40' " dark gray
 let s:mred = '#ec224e' " red
 let s:dora = '#ec6c39' " dark orange
 let s:lora = '#f39e35' " light orange
 let s:yell = '#fed522' " yellow
-let s:gree = '#12CA07' " green
+let s:gree = '#0cc531' " green
 let s:lblu = '#06bed9' " light blue
 let s:dblu = '#327ec9' " dark blue
 let s:mage = '#c026c3' " magenta
 
+let s:blac = '#040409' " bluish black
+let s:dgra = '#1e1c40' " dark gray
 
 " Highlight function {{{
 function! s:hi(group, fg, bg, style, special)
@@ -40,6 +40,7 @@ function! s:hi(group, fg, bg, style, special)
 
   if (!empty(a:style))
     let l:command .= ' gui=' . a:style
+    let l:command .= ' cterm=' . a:style
   endif
 
   if (!empty(a:special))
@@ -58,7 +59,7 @@ call s:hi('IncSearch',        'NONE', 'NONE', 'INVERSE', '')
 call s:hi('Search',           s:blac, s:dblu, '', '')
 call s:hi('MoreMsg',          s:blac, s:yell, 'NONE', '')
 call s:hi('ModeMsg',          s:blac, s:yell, 'NONE', '')
-call s:hi('LineNr',           s:yell, s:blac, '', '')
+call s:hi('LineNr',           s:dblu, s:blac, '', '')
 call s:hi('CursorLineNr',     s:lora, s:dgra, 'NONE', '')
 call s:hi('Question',         s:blac, s:yell, 'NONE', '')
 call s:hi('StatusLine',       s:blac, s:dblu, 'NONE', '')
@@ -93,9 +94,9 @@ call s:hi('CursorLine',       'NONE', s:dgra, '', '')
 call s:hi('ColorColumn',      'NONE', s:dgra, '', '')
 call s:hi('StatusLineTerm',   s:blac, s:dblu, 'NONE', '')
 call s:hi('StatusLineTermNC', s:dblu, s:blac, '', '')
-call s:hi('Cursor',           s:blac, s:gree, '', '')
-call s:hi('lCursor',          s:blac, s:gree, '', '')
-call s:hi('MatchParen',       s:blac, s:yell, '', '')
+call s:hi('Cursor',           s:blac, s:lora, '', '')
+call s:hi('lCursor',          s:blac, s:lora, '', '')
+call s:hi('MatchParen',       s:blac, s:dblu, '', '')
 call s:hi('ToolbarLine',      s:lora, s:blac, '', '')
 call s:hi('ToolbarButton',    s:lora, s:blac, 'NONE', '')
 call s:hi('Comment',          s:gree, s:blac, '', '')
@@ -107,10 +108,8 @@ call s:hi('PreProc',          s:mage, s:blac, '', '')
 call s:hi('Type',             s:lora, s:blac, 'NONE', '')
 call s:hi('Underlined',       'NONE', 'NONE', 'UNDERLINE', '')
 call s:hi('Ignore',           s:dgra, 'NONE', '', '')
-call s:hi('Error',            s:blac, s:mred, '', '')
-call s:hi('Todo',             s:blac, s:lora, '', '')
-
-highlight Folded ctermbg=black
+call s:hi('Error',            s:mred, s:blac, 'REVERSE', '')
+call s:hi('Todo',             s:lora, s:blac, 'REVERSE', '')
 
 hi CursorLine     cterm=NONE
 hi DiffText       cterm=NONE
@@ -129,8 +128,10 @@ hi! link vimCommentString Comment
 hi! link vimCommentTitle  Comment
 hi! link TrailingSpac     DiffDelete
 
-" Diff colors
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+hi! link cType            Identifier
+hi! link cBlock           PreProc
+hi! link cStructure       Identifier
+
+" Pandoc (2019-06-17)
+hi! link pandocEmphasis Statement
+hi! link pandocStrong   Statement
