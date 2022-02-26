@@ -161,6 +161,9 @@ set t_Co=256
 " This works better in urxvt-256 for some reason
 "set t_Co=8
 
+" Hit F3 to see syntax category under cursor
+map <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
+
 
 """""""""""
 "" Files ""
@@ -400,28 +403,41 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" Only use single quotes in these URLs
+
+" Use single quotes in these URLs
 " Status line...
 Plug 'https://github.com/itchyny/lightline.vim.git'
 "...with git
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
-" Use the next two together for autocomplete
-Plug 'https://github.com/davidhalter/jedi-vim.git'
-Plug 'https://github.com/lifepillar/vim-mucomplete.git'
-" Improved folding for Python
-Plug 'https://github.com/tmhedberg/SimpylFold.git'
+
 " File Explorer
 Plug 'scrooloose/nerdtree'
+
 " Visual undo tree
 Plug 'https://github.com/sjl/gundo.vim.git'
+
 " Colors to hex
 Plug 'https://github.com/chrisbra/Colorizer.git'
+
+" Marks in sidebar
+Plug 'https://github.com/kshenoy/vim-signature.git'
+
+" Use the next two together for autocomplete
+"Plug 'https://github.com/davidhalter/jedi-vim.git'
+Plug 'https://github.com/lifepillar/vim-mucomplete.git'
+
+" Improved folding for Python
+"Plug 'https://github.com/tmhedberg/SimpylFold.git'
+
 " Initialize plugin system
 call plug#end()
 
 " Nerdtree
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Colorizer
+map <leader>ch :ColorHighlight<CR>
 
 " Gundo
 if has('python3')
@@ -430,23 +446,49 @@ endif
 
 nnoremap <leader>u :GundoToggle<CR>
 
-" Jedi-vim
-autocmd FileType python setlocal completeopt-=preview " Don't open docstring window
-" Keybindings - put here to find/avoid conflicts
-let g:jedi#goto_command = "<leader>g"
-let g:jedi#goto_assignments_command = "<leader>ga"
-let g:jedi#goto_definitions_command = "<leader>gd"
-let g:jedi#documentation_command = "<leader>d"
-let g:jedi#usages_command = "<leader>ju"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>jr"
+" vim-signature
+" Leaving this here for reference (for now), might make changes
+"  mx           Toggle mark 'x' and display it in the leftmost column
+"  dmx          Remove mark 'x' where x is a-zA-Z
+"
+"  m,           Place the next available mark
+"  m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+"  m-           Delete all marks from the current line
+"  m<Space>     Delete all marks from the current buffer
+"  ]`           Jump to next mark
+"  [`           Jump to prev mark
+"  ]'           Jump to start of next line containing a mark
+"  ['           Jump to start of prev line containing a mark
+"  `]           Jump by alphabetical order to next mark
+"  `[           Jump by alphabetical order to prev mark
+"  ']           Jump by alphabetical order to start of next line having a mark
+"  '[           Jump by alphabetical order to start of prev line having a mark
+"  m/           Open location list and display marks from current buffer
+"
+"  m[0-9]       Toggle the corresponding marker !@#$%^&*()
+"  m<S-[0-9]>   Remove all markers of the same type
+"  ]-           Jump to next line having a marker of the same type
+"  [-           Jump to prev line having a marker of the same type
+"  ]=           Jump to next line having a marker of any type
+"  [=           Jump to prev line having a marker of any type
+"  m?           Open location list and display markers from current buffer
+"  m<BS>        Remove all markers
 
+""Not really ever using these two
+"" Jedi-vim
+"autocmd FileType python setlocal completeopt-=preview " Don't open docstring window
+"" Keybindings - put here to find/avoid conflicts
+"let g:jedi#goto_command = "<leader>g"
+"let g:jedi#goto_assignments_command = "<leader>ga"
+"let g:jedi#goto_definitions_command = "<leader>gd"
+"let g:jedi#documentation_command = "<leader>d"
+"let g:jedi#usages_command = "<leader>ju"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>jr"
+"
 " Mucomplete
 map <leader>a :MUcompleteAutoToggle<CR>
 set completeopt+=menuone,noselect
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
 let g:mucomplete#completion_delay = 1 " Set delay
-
-" Colorizer
-map <leader>ch :ColorHighlight<CR>
