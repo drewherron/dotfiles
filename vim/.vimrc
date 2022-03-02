@@ -136,7 +136,7 @@ set foldcolumn=1
 syntax enable
 
 " Colorscheme
-set termguicolors
+set notermguicolors
 
 try
     colorscheme aldalome
