@@ -32,6 +32,7 @@
 #define lcyan     #55FFFF
 #define white     #FFFFFF
 
+#define ddgray    #2a2a2a
 #define P1        #43e600
 #define P3        #e6a500
 
@@ -162,10 +163,10 @@ Xft.lcdfilter: lcddefault
 ! dwm
 
 dwm*normbgcolor:        black 
-dwm*normbordercolor:    red
+dwm*normbordercolor:    ddgray
 dwm*normfgcolor:        P1
-dwm*selbgcolor:         dgray
-dwm*selbordercolor:     dgray
+dwm*selbgcolor:         ddgray
+dwm*selbordercolor:     P1
 dwm*selfgcolor:         P3
 !dwm*borderpx:           1
 !dwm*snap:               32
