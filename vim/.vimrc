@@ -1,3 +1,13 @@
+
+"██╗░░░██╗██╗███╗░░░███╗██████╗░░█████╗░
+"██║░░░██║██║████╗░████║██╔══██╗██╔══██╗
+"╚██╗░██╔╝██║██╔████╔██║██████╔╝██║░░╚═╝
+"░╚████╔╝░██║██║╚██╔╝██║██╔══██╗██║░░██╗
+"░░╚██╔╝░░██║██║░╚═╝░██║██║░░██║╚█████╔╝
+"░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░
+" By Drew Herron
+" github.com/drewherron/dotfiles.git
+
 """"""""""""
 "" Remaps ""
 """"""""""""
@@ -5,34 +15,18 @@
 " Remap ESC key
 inoremap kj <Esc>
 
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+" Remap 0 to first non-blank character
+map 0 ^
 
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-" Fast moving
-"nnoremap H ^
-"nnoremap L $
-"nnoremap J <C-d>
-"nnoremap K <C-u>
-
-" Smart way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
+" Save a keypress in window switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" For now stealing these two from above for pgup/pgdown
-" Consider maybe using to change tabs
-map <C-j> <C-d>
-map <C-k> <C-u>
-
-" Remap VIM 0 to first non-blank character
-map 0 ^
 
 """"""""""""""""
 "" Leader Key ""
@@ -51,7 +45,7 @@ nmap <leader>w :w!<cr>
 " Fast quitting
 nmap <leader>q :q<cr>
 
-" Disable highlight when <leader><cr> is pressed
+" Disable search highlight when <leader>Enter is pressed
 map <silent> <leader><cr> :noh<cr>
 
 
@@ -64,24 +58,22 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Manjaro conflict?
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null %
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Turn on hybrid numbers
+" Line numbers relative to cursor
 set relativenumber
+" but show current line number
 set nu rnu
 
 "Always show current position
 set ruler
 
-" Turn on the Wild menu
+" Turn on the wildmenu
 set wildmenu
-
-" First tab completes to longest, seconds tab to open menu
 set wildmode=longest:list,full
 
 " Height of the command bar
@@ -97,26 +89,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases
+" If you search for caps, stop ignoring case
 set smartcase
+
+" Incremental search (while typing)
+set incsearch
 
 " Highlight search results
 set hlsearch
 
-" Incremental search
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
+" Don't redraw while executing macros
 set lazyredraw
 
-" For regular expressions turn magic on
+" Don't require (as many) escapes in search patterns
 set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
-
-" How many tenths of a second to blink when matching brackets
-set mat=2
 
 " No sound on errors
 set noerrorbells
@@ -127,6 +116,25 @@ set tm=500
 " Add some margin to the left
 set foldcolumn=1
 
+" Use spaces instead of tabs
+set expandtab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" This caused problems
+" set smarttab
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+set foldlevel=10
 
 """"""""""""
 "" Colors ""
@@ -138,9 +146,11 @@ syntax enable
 " Colorscheme
 set notermguicolors
 
+
 try
     colorscheme aldalome
 catch
+    colorscheme elflord
 endtry
 
 set background=dark
@@ -164,7 +174,6 @@ set t_Co=256
 " Hit F3 to see syntax category under cursor
 map <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
-
 """""""""""
 "" Files ""
 """""""""""
@@ -185,30 +194,15 @@ set ffs=unix,dos,mac
 "set directory=~/.vim/tmp//
 "set undodir=~/.vim/tmp//
 
+" Trying this instead
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
+
 " To disable backups:
-set nobackup
-set nowb
-set noswapfile
-
-" Use spaces instead of tabs
-set expandtab
-
-" This caused problems
-" set smarttab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-set foldlevel=10
+"set nobackup
+"set nowritebackup
+"set noswapfile
 
 """"""""""""""""""""
 "" Tabs + Buffers ""
@@ -295,19 +289,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Disable automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 " Show register
 map <leader>r :reg<cr>
 
@@ -384,6 +365,18 @@ autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
 
 """""""""""""
 "" Plugins ""
@@ -447,6 +440,8 @@ endif
 nnoremap <leader>u :GundoToggle<CR>
 
 " vim-signature
+"Why doesn't this work at all
+"map <leader>m :SignatureToggle<CR>
 " Leaving this here for reference (for now), might make changes
 "  mx           Toggle mark 'x' and display it in the leftmost column
 "  dmx          Remove mark 'x' where x is a-zA-Z
@@ -485,7 +480,7 @@ nnoremap <leader>u :GundoToggle<CR>
 "let g:jedi#usages_command = "<leader>ju"
 "let g:jedi#completions_command = "<C-Space>"
 "let g:jedi#rename_command = "<leader>jr"
-"
+
 " Mucomplete
 map <leader>a :MUcompleteAutoToggle<CR>
 set completeopt+=menuone,noselect
