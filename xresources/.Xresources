@@ -1,4 +1,59 @@
-! URxvt Appearance
+! COLORS
+
+! foreground/background
+*background: black
+*foreground: P1
+
+! CGA RGBI
+! name		dark	light
+! black	    0	    8
+! red		1	    9
+! green	    2	    10
+! yellow	3	    11
+! blue		4	    12
+! magenta	5	    13
+! cyan      6	    14
+! white	    7	    15
+
+#define black     #000000
+#define red       #AA0000
+#define green     #00aa00
+#define brown     #AA5500
+#define blue      #0000aa
+#define magenta   #AA00AA
+#define cyan      #00AAAA
+#define lgray     #AAAAAA
+#define dgray     #555555
+#define lred      #FF5555
+#define lgreen    #55FF55
+#define yellow    #FFFF55
+#define lblue     #5555ff
+#define lmagenta  #FF55FF
+#define lcyan     #55FFFF
+#define white     #FFFFFF
+
+#define P1        #43e600
+#define P3        #e6a500
+
+*.color0  : black
+*.color1  : red
+*.color2  : green
+*.color3  : brown
+*.color4  : blue
+*.color5  : magenta
+*.color6  : cyan
+*.color7  : lgray
+*.color8  : dgray
+*.color9  : lred
+*.color10 : lgreen
+*.color11 : yellow
+*.color12 : lblue
+*.color13 : lmagenta
+*.color14 : lcyan
+*.color15 : white
+!
+! URxvt
+!
 URxvt.saveLines:        10000
 URxvt.xftAntialias:     true
 URxvt.font:             xft:Source Code Pro Semibold:style=Semibold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true,hinting=true
@@ -104,56 +159,18 @@ Xft.lcdfilter: lcddefault
 ! URxvt*tabbar-fg:                  colour
 ! URxvt*url-launcher:               string
 
-! COLORS
+! dwm
 
-! foreground/background
-*background: black
-*foreground: P1
-
-! CGA RGBI
-! name		dark	light
-! black	    0	    8
-! red		1	    9
-! green	    2	    10
-! yellow	3	    11
-! blue		4	    12
-! magenta	5	    13
-! cyan      6	    14
-! white	    7	    15
-
-#define black     #000000
-#define red       #AA0000
-#define green     #00aa00
-#define brown     #AA5500
-#define blue      #0000aa
-#define magenta   #AA00AA
-#define cyan      #00AAAA
-#define lgray     #AAAAAA
-#define dgray     #555555
-#define lred      #FF5555
-#define lgreen    #55FF55
-#define yellow    #FFFF55
-#define lblue     #5555ff
-#define lmagenta  #FF55FF
-#define lcyan     #55FFFF
-#define white     #FFFFFF
-
-#define P1        #43e600
-#define P3        #e6a500
-
-*.color0  : black
-*.color1  : red
-*.color2  : green
-*.color3  : brown
-*.color4  : blue
-*.color5  : magenta
-*.color6  : cyan
-*.color7  : lgray
-*.color8  : dgray
-*.color9  : lred
-*.color10 : lgreen
-*.color11 : yellow
-*.color12 : lblue
-*.color13 : lmagenta
-*.color14 : lcyan
-*.color15 : white
+dwm*normbgcolor:        black 
+dwm*normbordercolor:    red
+dwm*normfgcolor:        P1
+dwm*selbgcolor:         dgray
+dwm*selbordercolor:     dgray
+dwm*selfgcolor:         P3
+!dwm*borderpx:           1
+!dwm*snap:               32
+!dwm*showbar:            1
+!dwm*topbar:             1
+!dwm*nmaster:            1
+!dwm*resizehints:        1
+!dwm*mfact:              0.55
