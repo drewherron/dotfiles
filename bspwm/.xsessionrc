@@ -1,2 +1,3 @@
 #!/bin/bash
-exec bspwm
+#exec bspwm
+#uncomment that if you need to (using startx) right now on Ubuntu it only causes trouble
