@@ -1,4 +1,3 @@
-
 "██╗░░░██╗██╗███╗░░░███╗██████╗░░█████╗░
 "██║░░░██║██║████╗░████║██╔══██╗██╔══██╗
 "╚██╗░██╔╝██║██╔████╔██║██████╔╝██║░░╚═╝
@@ -61,7 +60,7 @@ set autoread
 " :W sudo saves the file
 command W w !sudo tee % > /dev/null %
 
-" Set 7 lines to the cursor - when moving vertically using j/k
+" Number of lines above/below cursor when scrolling
 set so=7
 
 " Line numbers relative to cursor
@@ -174,6 +173,10 @@ set t_Co=256
 " Hit F3 to see syntax category under cursor
 map <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
+let g:lightline = {
+    \ 'colorscheme': 'aldalome',
+    \ }
+
 """""""""""
 "" Files ""
 """""""""""
@@ -277,8 +280,8 @@ endtry
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set showtabline=1 " Only show tab line if there are at least two tab pages
+set noshowmode " Hide the mode text below the statusline
 
 " Always show the status line
 set laststatus=2
