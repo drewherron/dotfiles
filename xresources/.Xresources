@@ -2,7 +2,7 @@
 
 ! foreground/background
 *background: black
-*foreground: P1
+*foreground: lgreen
 
 ! CGA RGBI
 ! name		dark	light
@@ -55,6 +55,7 @@
 !
 ! URxvt
 !
+URxvt.foreground: P1
 URxvt.saveLines:        10000
 URxvt.xftAntialias:     true
 URxvt.font:             xft:Source Code Pro Semibold:style=Semibold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true,hinting=true
@@ -175,3 +176,37 @@ dwm*selfgcolor:         P3
 !dwm*nmaster:            1
 !dwm*resizehints:        1
 !dwm*mfact:              0.55
+
+! st
+
+
+st.color0  : black
+st.color1  : red
+st.color2  : green
+st.color3  : brown
+st.color4  : blue
+st.color5  : magenta
+st.color6  : cyan
+st.color7  : lgray
+st.color8  : dgray
+st.color9  : lred
+st.color10 : lgreen
+st.color11 : yellow
+st.color12 : lblue
+st.color13 : lmagenta
+st.color14 : lcyan
+st.color15 : white
+st*background: lgreen
+st*foreground: black
+!st*cursorColor",  STRING,  &colorname[258] },
+!st*font",         STRING,  &font },
+!st*termname",     STRING,  &termname },
+!st*shell",        STRING,  &shell },
+!st*minlatency",   INTEGER, &minlatency },
+!st*maxlatency",   INTEGER, &maxlatency },
+!st*blinktimeout", INTEGER, &blinktimeout },
+!st*bellvolume",   INTEGER, &bellvolume },
+!st*tabspaces",    INTEGER, &tabspaces },
+!st*borderpx",     INTEGER, &borderpx },
+!st*cwscale",      FLOAT,   &cwscale },
+!st*chscale",      FLOAT,   &chscale },
