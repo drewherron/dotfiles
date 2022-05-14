@@ -443,8 +443,7 @@ endif
 nnoremap <leader>u :GundoToggle<CR>
 
 " vim-signature
-"Why doesn't this work at all
-"map <leader>m :SignatureToggle<CR>
+map <leader>m :SignatureToggle<CR>
 " Leaving this here for reference (for now), might make changes
 "  mx           Toggle mark 'x' and display it in the leftmost column
 "  dmx          Remove mark 'x' where x is a-zA-Z
