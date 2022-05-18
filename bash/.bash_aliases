@@ -17,3 +17,4 @@ alias grep="grep --color"
 alias bashreload="source ~/.bashrc && echo Bash config reloaded"
 
 alias zyp="zypper"
+alias lf="lfuz"
