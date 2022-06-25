@@ -2,6 +2,7 @@
 alias ll='ls -ahlF'
 alias la='ls -A'
 alias l='ls -CF'
+alias v="vim"
 alias py="python3"
 alias tree="tree -C"
 alias ..="cd .."
