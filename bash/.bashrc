@@ -1,12 +1,12 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-# Starting with the default Ubuntu bashrc and only adding what I fully understand
+# Starting with a default bashrc and only adding what I fully understand
 
 # Paths
 export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin
 export MANPATH=/usr/local/man:/usr/man:/usr/share/man
-export LESS="QMcdeX"
+export LESS="FRiQMcdeXz4" #Review this
 export MORE="-c"
 export PAGER=less
 # Personal bin directory
@@ -61,6 +61,52 @@ export EDITOR
 # Activate vi mode with <Escape>
 set -o vi
 
+# Get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "[${BRANCH}${STAT}]"
+	else
+		echo ""
+	fi
+}
+
+# Get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -82,12 +128,14 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set two-line prompt
-# Stolen from Jesse Chaney
+# Original stolen from Jesse Chaney
 if [ "$PS1" ]; then
     # Foreground color
     #PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
     # 256 colors (orange - 208)
-    PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n\u \$ "
+    #PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n \u \$  "
+    # Add git branch/status
+    PS1="\e[30;48:5:208m \h \e[27;49;39m \w \e[0;96m\`parse_git_branch\`\n\e[27;49;39m \u \$  "
 fi
 
 #if [ "$color_prompt" = yes ]; then
