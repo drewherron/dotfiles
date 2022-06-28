@@ -68,8 +68,6 @@ case "$TERM" in
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -86,7 +84,10 @@ fi
 # Set two-line prompt
 # Stolen from Jesse Chaney
 if [ "$PS1" ]; then
-    PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
+    # Foreground color
+    #PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
+    # 256 colors (orange - 208)
+    PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n\u \$ "
 fi
 
 #if [ "$color_prompt" = yes ]; then
