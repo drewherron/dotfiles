@@ -6,7 +6,7 @@
 # Paths
 export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin
 export MANPATH=/usr/local/man:/usr/man:/usr/share/man
-export LESS="FRiQMcdeXz4" #Review this
+#export LESS="FRQiMcdeXz4" #Review this
 export MORE="-c"
 export PAGER=less
 # Personal bin directory
@@ -44,7 +44,7 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -128,14 +128,13 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set two-line prompt
-# Original stolen from Jesse Chaney
 if [ "$PS1" ]; then
-    # Foreground color
+    # Original stolen from Jesse Chaney
     #PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
-    # 256 colors (orange - 208)
+    # Add hostname in 256-color (208 = orange)
     #PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n \u \$  "
     # Add git branch/status
-    PS1="\e[30;48:5:208m \h \e[27;49;39m \w \e[0;96m\`parse_git_branch\`\n\e[27;49;39m \u \$  "
+    PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
 fi
 
 #if [ "$color_prompt" = yes ]; then
@@ -220,4 +219,5 @@ extract ()
 # List files on changing directory
 function cd {
     builtin cd "$@" && ls -F
-    }
+}
+
