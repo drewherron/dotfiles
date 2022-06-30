@@ -29,6 +29,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # History
+export HISTIGNORE="?:??:history:clear:ls *:go *:pwd:*suspend"
 export HISTTIMEFORMAT="%d/%m %T "
 #HISTCONTROL=ignoreboth:erasedups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
