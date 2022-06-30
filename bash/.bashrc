@@ -29,7 +29,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # History
-export HISTIGNORE="?:??:history:clear:ls *:go *:pwd:*suspend"
+export HISTIGNORE="?:??:history:gh *:clear:ls *:go *:pwd:*suspend"
 export HISTTIMEFORMAT="%d/%m %T "
 #HISTCONTROL=ignoreboth:erasedups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -137,6 +137,33 @@ if [ "$PS1" ]; then
     # Add git branch/status
     PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
 fi
+
+case `hostname -s` in
+    ada)
+        #module load slurm
+        #module load intel/19 openmpi
+        #PS1="\e[96;40m\w\n\u@ \e[44;97m \h \e[49;39m \e[96;40m# "
+        #PS1="\e[44;97m \h \e[49;39m \e[96;40m\w\n\u \e[96;40m# "
+        PS1="\e[30;48:5:13m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+        #echo "on a submit node"
+        ;;
+    royal|cosmotron)
+        #module load cuda/10.1
+        #PS1="\e[91;40m\w\n\u@ \e[41;97m \h \e[49;39m \e[91;40m# "
+        #PS1="\e[42;97m \h \e[27;49;39m \w\n\u # "
+        PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+         ;;
+#     other)
+#             PS1="\e[41;97m \h \e[49;39m \e[91;40m\w\n\u \e[91;40m# "
+#         ;;
+     babbage*)
+         #PS1="\e[45;97m \h \e[27;49;39m \w\n\u # "
+         PS1="\e[30;48:5:14m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+         ;;
+     *)
+         #echo "NOT on a submit node"
+         ;;
+esac
 
 #if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
