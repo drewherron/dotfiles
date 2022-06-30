@@ -29,7 +29,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # History
-export HISTIGNORE="?:??:history:gh *:clear:ls *:go *:pwd:*suspend"
+export HISTIGNORE="?:??:history:gh *:clear:ls *:go *:pwd:*suspend:git status"
 export HISTTIMEFORMAT="%d/%m %T "
 #HISTCONTROL=ignoreboth:erasedups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -142,11 +142,11 @@ fi
 case `hostname -s` in
     ada)
         # fuchsia - 13
-        PS1="\e[30;48:5:13m\]   \h   \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+        PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
         ;;
     babbage*)
-        # cyan - 14
-        PS1="\e[30;48:5:14m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+        # cyan - 96
+        PS1="\e[30;48:5:96m\] \h \e[27;49;39m\] \w \e[0;13m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
         ;;
     *)
         ;;
