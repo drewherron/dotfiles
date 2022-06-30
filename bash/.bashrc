@@ -130,7 +130,7 @@ fi
 
 # Set two-line prompt
 if [ "$PS1" ]; then
-    # Original stolen from Jesse Chaney
+    # Original taken from Jesse Chaney
     #PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
     # Add hostname in 256-color (208 = orange)
     #PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n \u \$  "
@@ -138,31 +138,18 @@ if [ "$PS1" ]; then
     PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
 fi
 
+# Change prompt color based on hostname
 case `hostname -s` in
     ada)
-        #module load slurm
-        #module load intel/19 openmpi
-        #PS1="\e[96;40m\w\n\u@ \e[44;97m \h \e[49;39m \e[96;40m# "
-        #PS1="\e[44;97m \h \e[49;39m \e[96;40m\w\n\u \e[96;40m# "
-        PS1="\e[30;48:5:13m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-        #echo "on a submit node"
+        # fuchsia - 13
+        PS1="\e[30;48:5:13m\]   \h   \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
         ;;
-    royal|cosmotron)
-        #module load cuda/10.1
-        #PS1="\e[91;40m\w\n\u@ \e[41;97m \h \e[49;39m \e[91;40m# "
-        #PS1="\e[42;97m \h \e[27;49;39m \w\n\u # "
-        PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-         ;;
-#     other)
-#             PS1="\e[41;97m \h \e[49;39m \e[91;40m\w\n\u \e[91;40m# "
-#         ;;
-     babbage*)
-         #PS1="\e[45;97m \h \e[27;49;39m \w\n\u # "
-         PS1="\e[30;48:5:14m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-         ;;
-     *)
-         #echo "NOT on a submit node"
-         ;;
+    babbage*)
+        # cyan - 14
+        PS1="\e[30;48:5:14m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+        ;;
+    *)
+        ;;
 esac
 
 #if [ "$color_prompt" = yes ]; then
