@@ -210,3 +210,6 @@ st*foreground: black
 !st*borderpx",     INTEGER, &borderpx },
 !st*cwscale",      FLOAT,   &cwscale },
 !st*chscale",      FLOAT,   &chscale },
+
+Sxiv.background: #000000
+Sxiv.foreground: #00C0FF
