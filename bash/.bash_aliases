@@ -23,4 +23,5 @@ alias bashreload="source ~/.bashrc && echo Bash config reloaded"
 alias sus="systemctl suspend"
 
 alias zyp="zypper"
-alias lf="lfuz"
+alias lf="lfrun"
+alias sxiv="sxivrun"
