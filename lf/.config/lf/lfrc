@@ -20,8 +20,26 @@ set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
+set filesep "\n"      # default already
+set icons on          # show icons next to files
+set period 1          # interval to check for directory updates
+set hidden on         # show hidden files by default
+set incsearch on      # jump to first match after each keystroke in search
+set ignorecase on
+set dircounts on      # show number of items in directory instead of sie
+set info "size"       # list directory information on the right
+set sortby "natural"  # don't sort files in any special way
+set preview on        # preview file on the right pane
+#set drawbox on        # draw a border around all panes
+#set ratios '1:2:3'    # ratio of pane widths
+#set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+
 # use enter for shell commands
 map <enter> shell
+
+# Image preview
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
 
 # execute current file (must be executable)
 map x $$f
@@ -35,13 +53,63 @@ map O $mimeopen --ask $f
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
+#cmd open ${{
+#    test -L $f && f=$(readlink -f $f)
+#    case $(file --mime-type $f -b) in
+#        text/*) $EDITOR $fx;;
+#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+#    esac
+#}}
+# Better version
+#cmd open ${{
+#    case $(file --mime-type "$(readlink -f $f)" -b) in
+#	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+#	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+#        text/*|application/json|inode/x-empty) $EDITOR $fx;;
+#	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+#	image/svg+xml) display -- $f ;;
+#	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+#		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+#			[ -z "$file" ] && continue
+#			lf -remote "send select \"$file\""
+#			lf -remote "send toggle"
+#		done &
+#		;;
+#	audio/*) mpv --audio-display=no $f ;;
+#	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+#	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+#      (application/x-bittorrent) open -a Transmission.app ;;
+#	application/pgp-encrypted) $EDITOR $fx ;;
+#        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+#    esac
+#}}
+
+# Even better?
 cmd open ${{
-    test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
-        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+      (application/pdf|application/vnd*|application/epub*) nohup zathura $fx >/dev/null 2>&1 ;;
+      (application/csv) vd $fx ;;
+      (application/msword\
+        |application/vnd.openxmlformats-officedocument.*\
+        |application/vnd.oasis.opendocument.text\
+        |application/vnd.ms-excel\
+        |text/rtf) open -a LibreOffice.app ;;
+      (text/*) $EDITOR $fx;;
+      (image/x-xcf) nohup gimp $f >/dev/null 2>&1 ;;
+      (image/svg+xml) display -- $f ;;
+      #(image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -ai 2>/dev/null | lf-select ;;
+      (image/*) sxivrun $fx ;;
+      (audio/*) mpv --audio-display=no $f >/dev/null ;;
+      (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
+      (application/x-bittorrent) open -a Transmission.app ;;
+      (application/zlib) open ;;
+      (*)
+        case ${f:e} in
+          (dmg) hdiutil attach "$fx" ;;
+          (*) $EDITOR $fx ;;
+        esac
+        ;;
     esac
-}}
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
@@ -52,7 +120,7 @@ cmd open ${{
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+#cmd trash %set -f; mv $fx ~/.trash
 
 # define a custom 'delete' command
 # cmd delete ${{
@@ -64,7 +132,7 @@ cmd trash %set -f; mv $fx ~/.trash
 # }}
 
 # use '<delete>' key for either 'trash' or 'delete' command
-map <delete> trash
+ map <delete> del
 # map <delete> delete
 
 # extract the current file with the right command
@@ -98,8 +166,3 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
-
-# Image preview
-set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/cleaner
-
