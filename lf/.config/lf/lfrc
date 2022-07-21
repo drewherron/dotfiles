@@ -87,7 +87,7 @@ map O $mimeopen --ask $f
 # Even better?
 cmd open ${{
     case $(file --mime-type $f -b) in
-      (application/pdf|application/vnd*|application/epub*) nohup zathura $fx >/dev/null 2>&1 ;;
+      (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
       (application/csv) vd $fx ;;
       (application/msword\
         |application/vnd.openxmlformats-officedocument.*\
@@ -103,13 +103,17 @@ cmd open ${{
       (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
       (application/x-bittorrent) open -a Transmission.app ;;
       (application/zlib) open ;;
-      (*)
-        case ${f:e} in
-          (dmg) hdiutil attach "$fx" ;;
-          (*) $EDITOR $fx ;;
-        esac
-        ;;
+      # Testing $OPENER (seems to work better)
+      (*) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
+}}
+#      (*)
+#        case ${f:e} in
+#          (dmg) hdiutil attach "$fx" ;;
+#          (*) $EDITOR $fx ;;
+#        esac
+#        ;;
+#    esac
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
