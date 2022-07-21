@@ -4,7 +4,7 @@
 # Starting with a default bashrc and only adding what I fully understand
 
 # Paths
-export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin
+export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin:/home/drew/.local/bin:/home/drew/bin
 export MANPATH=/usr/local/man:/usr/man:/usr/share/man
 #export LESS="FRQiMcdeXz4" #Review this
 export MORE="-c"
