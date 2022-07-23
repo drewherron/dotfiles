@@ -61,7 +61,7 @@ set autoread
 command W w !sudo tee % > /dev/null %
 
 " Number of lines above/below cursor when scrolling
-set so=7
+set so=3
 
 " Line numbers relative to cursor
 set relativenumber
@@ -81,7 +81,7 @@ set cmdheight=2
 " A buffer becomes hidden when it is abandoned
 set hid
 
-" Configure backspace so it acts as it should act
+" Configure backspace so it acts as it should
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
