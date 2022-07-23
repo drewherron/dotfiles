@@ -86,6 +86,7 @@ map O $mimeopen --ask $f
 
 # Even better?
 cmd open ${{
+    test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
       (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
       (application/csv) vd $fx ;;
