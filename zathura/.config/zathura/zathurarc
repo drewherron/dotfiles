@@ -7,28 +7,131 @@
 #  ██████░░████████  ░░██ ░██  ░██░░██████░███   ░░████████
 # ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░     ░░░░░░░░
 
-# general
-set smooth-scroll "true"
+# Fullscreen
+set window-height 3000
+set window-width 3000
 
-# colors
-set recolor true
-set default-bg "#2E3440"
-set default-fg "#D8DEE9"
-set recolor-lightcolor  "#2E3440"
-set recolor-darkcolor "#D8DEE9"
-set statusbar-fg "#000000"
-set statusbar-bg "#3B4252"
-set inputbar-fg "#D8DEE9"
-set inputbar-bg "#3B4252"
-set completion-highlight-fg "#000000"
-set completion-highlight-bg "#5E81AC"
-set highlight-color "#5E81AC"
-set highlight-active-color "#88C0D0"
-set notification-fg "#000000"
-set notification-bg "#5E81AC"
+# Colors (mostly green)
+set default-bg                "#000000"
+set default-fg                "#00ff00"
+set completion-fg             "#00ff00"
+set completion-bg             "#404040"
+set completion-highlight-fg   "#000000"
+set completion-highlight-bg   "#00ff00"
+set notification-fg           "#00ff00"
+set notification-bg           "#000000"
+#set notification-error-fg     "#FF1212"
+#set notification-error-bg     "#FFFFFF"
+#set notification-warning-fg   "#FFF712"
+#set notification-warning-bg   "#FFFFFF"
+#set tabbar-fg                 "#FFFFFF"
+#set tabbar-bg                 "#000000"
+#set tabbar-focus-fg           "#9FBC00"
+#set tabbar-focus-bg           "#000000"
+#set show-scrollbars           "false"
 
-# keybinds
-map [normal] ZZ quit
-map [normal] ZQ quit
+
+set statusbar-fg              "#00ff00"
+set statusbar-bg              "#000000"
+
+set inputbar-fg               "#00ff00"
+set inputbar-bg               "#000000"
+
+set highlight-color           "#91caa3"
+set highlight-active-color    "#00ff00"
+
+# an amber recolor
+set recolor false
+set recolor-lightcolor        "#000000"
+set recolor-darkcolor         "#ffc533"
+
+## Info for future options:
+#Mapping a shortcut:
+#map [mode] <binding> <shortcut function> <argument>
+#
+#Modes: normal, fullscreen, index
+#
+#Modifiers: A - Alt, C - Control, S - Shift
+#map <A-a> shortcut_function
+#map <C-a> shortcut_function
+#map <S-a> shortcut_function
+#
+#Identifier Description
+#---------- -----------
+#BackSpace  Back space
+#CapsLock   Caps lock
+#Esc        Escape
+#Down       Arrow down
+#Up         Arrow up
+#Left       Arrow left
+#Right      Arrow right
+#F1         F1
+#F2         F2
+#F3         F3
+#F4         F4
+#F5         F5
+#F6         F6
+#F7         F7
+#F8         F8
+#F9         F9
+#F10        F10
+#F11        F11
+#F12        F12
+#PageDown   Page Down
+#PageUp     Page Up
+#Return     Return
+#Space      Space
+#Super      Windows key
+#Tab        Tab
+#
+#Button1    Mouse button 1
+#Button2    Mouse button 2
+#Button3    Mouse button 3
+#Button4    Mouse button 4
+#Button5    Mouse button 5
+#They can also be combined with modifiers:
+#map <Button1> shortcut_function
+#map <C-Button1> shortcut_function
+#
+#Functions that can be mapped:
+#Function          Description
+#--------          -----------
+#abort             Switch back to normal mode
+#adjust_window     Adjust page width
+#change_mode       Change current mode
+#display_link      Display link target
+#focus_inputbar    Focus inputbar
+#follow            Follow a link
+#goto              Go to a certain page
+#jumplist          Move forwards/backwards in the jumplist
+#navigate          Navigate to the next/previous page
+#navigate_index    Navigate through the index
+#print             Show the print dialog
+#quit              Quit zathura
+#recolor           Recolor the pages
+#reload            Reload the document
+#rotate            Rotate the page
+#scroll            Scroll
+#search            Search next/previous item
+#set               Set an option
+#toggle_fullscreen Toggle fullscreen
+#toggle_index      Show or hide index
+#toggle_inputbar   Show or hide inputbar
+#toggle_page_mode  Toggle between one and multiple pages per row
+#toggle_statusbar  Show or hide statusbar
+#zoom              Zoom in or out
+#
+#Options with their defaults:
+#set statusbar-h-padding 8
+#set statusbar-v-padding 2
+#set n-completion-items 15
+#set font monospace normal 9
+
+# guioptions is a string containing:
+# c - command line
+# s - statusbar
+# h - horizontal scrollbar
+# v - vertical scrollbar 
+#set guioptions s
 
 
