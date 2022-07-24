@@ -14,10 +14,10 @@
 /home/drew/Videos|vid
 /home/drew/.config|config
 /home/drew/.local/share/Trash/files|trash
-/home/drew/build|build
-/home/drew/build/dwm|dwm
-/home/drew/build/st|st
-/home/drew/build/dmenu|dmenu
+/home/drew/src|src
+/home/drew/src/dwm|dwm
+/home/drew/src/st|st
+/home/drew/src/dmenu|dmenu
 /home/drew/Documents|documents
 /home/drew/Documents|doc
 /home/drew/Documents/CS|cs
