@@ -58,10 +58,10 @@
 URxvt.foreground: P1
 URxvt.saveLines:        10000
 URxvt.xftAntialias:     true
-URxvt.font:             xft:Source Code Pro Semibold:style=Semibold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true,hinting=true
-URxvt.boldFont:         xft:Source Code Pro:style=Bold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
-URxvt.italicFont:       xft:Source Code Pro:style=Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
-URxvt.bolditalicFont:   xft:Source Code Pro:style=Bold Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
+URxvt.font:             xft:Cascadia Mono:style=Semibold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=14:antialias=true,hinting=true
+URxvt.boldFont:         xft:Cascadia Mono:style=Bold:pixelsize=16:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
+URxvt.italicFont:       xft:Cascadia Mono:style=Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
+URxvt.bolditalicFont:   xft:Cascadia Mono:style=Bold Italic:pixelsize=14:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=16:antialias=true,hinting=true
 URxvt.letterSpace: -2.5
 URxvt.lineSpace: 0
 URxvt.internalBorder: 0
