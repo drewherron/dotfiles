@@ -306,7 +306,7 @@ map <leader>sc :setlocal spell!<cr>
 " z= = show suggestions
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+map <leader>p :setlocal paste!<cr>
 
 """""""""""""""
 "" Functions ""
