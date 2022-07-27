@@ -4,7 +4,7 @@
 # Starting with a default bashrc and only adding what I fully understand
 
 # Paths
-export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin:/home/drew/.local/bin:/home/drew/bin
+export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin:/home/drew/.local/bin:/home/drew/bin:/usr/games
 export MANPATH=/usr/local/man:/usr/man:/usr/share/man
 #export LESS="FRQiMcdeXz4" #Review this
 export MORE="-c"
@@ -135,14 +135,18 @@ if [ "$PS1" ]; then
     # Add hostname in 256-color (208 = orange)
     #PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n \u \$  "
     # Add git branch/status
-    PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+    #PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+    # In st we have to use the RGB value:
+    PS1="\033[30;48;2;255;183;0m \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
 fi
 
 # Change prompt color based on hostname
 case `hostname -s` in
     ada)
         # fuchsia - 13
-        PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
+        #PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
+        # for st:
+        PS1="\e[30;48:2:255;0;255m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
         ;;
     babbage*)
         # cyan - 96
