@@ -100,7 +100,8 @@ cmd open ${{
       (image/svg+xml) display -- $f ;;
       #(image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -ai 2>/dev/null | lf-select ;;
       (image/*) sxivrun $fx ;;
-      (audio/*) mpv --audio-display=no $f >/dev/null ;;
+      #(audio/*) mpv --audio-display=no $f >/dev/null ;;
+      (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
       (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
       (application/x-bittorrent) open -a Transmission.app ;;
       (application/zlib) open ;;
@@ -136,8 +137,17 @@ cmd open ${{
 #     [ "$ans" = "y" ] && rm -rf $fx
 # }}
 
-# use '<delete>' key for either 'trash' or 'delete' command
- map <delete> del
+# Send to trash
+cmd trash ${{
+    set -f
+    printf "$fx\n"
+    printf "Delete? [y/n]"
+    read ans
+    [ "$ans" = "y" ] && trash-put $fx
+}}
+
+#  use '<delete>' key for either 'trash' or 'delete' command
+ map <delete> trash
 # map <delete> delete
 
 # extract the current file with the right command
