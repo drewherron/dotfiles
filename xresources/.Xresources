@@ -163,12 +163,17 @@ Xft.lcdfilter: lcddefault
 
 ! dwm
 
-dwm*normbgcolor:        black 
-dwm*normbordercolor:    ddgray
-dwm*normfgcolor:        P1
-dwm*selbgcolor:         ddgray
-dwm*selbordercolor:     P1
-dwm*selfgcolor:         P3
+dwm*normbgcolor:         black
+dwm*normbordercolor:     black
+dwm*normfgcolor:         P1
+!dwm*selbgcolor:          ddgray
+dwm*selbgcolor:          black
+dwm*selbordercolor:      P1
+dwm*selfgcolor:          P3
+dwm*menubgcolor:         black
+dwm*menufgcolor:         P1
+dwm*menuselbordercolor:  P3
+dwm*menuselfgcolor:      black
 !dwm*borderpx:           1
 !dwm*snap:               32
 !dwm*showbar:            1
