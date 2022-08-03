@@ -4,12 +4,16 @@
 	username = drewherron
 [core]
 	editor = vim
+[pager]
+    branch = false
+[pull]
+    rebase = false
 [diff]
 	tool = vimdiff
 [delta]
 	features = line-numbers decorations
 	line-numbers = true
-#[alias]
+#[alias] #maybe later...
 #	a = add --all
 #	b = branch
 #	c = commit
