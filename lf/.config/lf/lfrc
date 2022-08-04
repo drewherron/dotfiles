@@ -181,3 +181,18 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+# Play in mpv
+cmd mpv-play ${{
+    set -f
+    mpv $f
+}}
+
+# Shuffle in mpv
+cmd mpv-shuffle ${{
+    set -f
+    mpv --shuffle $f
+}}
+
+map <a-p> mpv-play
+map <a-s> mpv-shuffle
