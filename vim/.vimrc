@@ -10,16 +10,30 @@
 """"""""""""
 "" Remaps ""
 """"""""""""
+" Alt puts movement keys in the normal place
+" (using Colemak)
+" TODO Testing
+nnoremap <Esc>h h
+nnoremap <Esc>n gj
+nnoremap <Esc>e gk
+nnoremap <Esc>i l
+inoremap <Esc>h <Left>
+inoremap <Esc>n <Down>
+inoremap <Esc>e <Up>
+inoremap <Esc>i <Right>
+vnoremap <Esc>h <Left>
+vnoremap <Esc>e <Up>
+vnoremap <Esc>i <Right>
+
+" Move vertically by visual line
+"nnoremap j gj
+"nnoremap k gk
 
 " Remap ESC key
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 " Remap 0 to first non-blank character
 map 0 ^
-
-" Move vertically by visual line
-nnoremap j gj
-nnoremap k gk
 
 " Save a keypress in window switching
 map <C-j> <C-W>j
