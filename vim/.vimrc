@@ -10,18 +10,18 @@
 """"""""""""
 "" Remaps ""
 """"""""""""
-" Alt puts movement keys in the normal place
-" (using Colemak)
-" TODO Testing
-nnoremap <Esc>h h
+" <Alt> always puts movement keys in the normal place
+" TODO Testing with Colemak-DH
+nnoremap <Esc>m h
 nnoremap <Esc>n gj
 nnoremap <Esc>e gk
 nnoremap <Esc>i l
-inoremap <Esc>h <Left>
+inoremap <Esc>m <Left>
 inoremap <Esc>n <Down>
 inoremap <Esc>e <Up>
 inoremap <Esc>i <Right>
-vnoremap <Esc>h <Left>
+vnoremap <Esc>m <Left>
+vnoremap <Esc>n <Down>
 vnoremap <Esc>e <Up>
 vnoremap <Esc>i <Right>
 
@@ -435,6 +435,9 @@ Plug 'https://github.com/kshenoy/vim-signature.git'
 " Use the next two together for autocomplete
 "Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'https://github.com/lifepillar/vim-mucomplete.git'
+
+" Arpeggio - custom mod keys
+"Plug 'https://github.com/kana/vim-arpeggio.git'
 
 " Improved folding for Python
 "Plug 'https://github.com/tmhedberg/SimpylFold.git'
