@@ -137,7 +137,7 @@ if [ "$PS1" ]; then
     # Add git branch/status
     #PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
     # In st we have to use the RGB value:
-    PS1="\033[30;48;2;255;183;0m \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
+    PS1="\033[30;48;2;255;183;0m \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$ "
 fi
 
 # Change prompt color based on hostname
