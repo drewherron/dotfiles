@@ -5,17 +5,18 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias ll='ls -ahlF --group-directories-first'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll="ls -ahlF --group-directories-first"
+alias la="ls -A"
+alias l="ls -CF"
 
-alias cls='clear'
+alias cat="batcat"
+alias cls="clear"
 alias cp="cp -vi"
-alias mv="mv -v"
+alias mv="mv -vi"
 alias tree="tree -C"
 alias gh="history|grep"
 alias grep="grep --color"
-alias sus="systemctl suspend"
+alias sus="slock_off && systemctl suspend"
 
 alias py="python3"
 alias v="vim"
