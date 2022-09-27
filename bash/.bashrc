@@ -152,7 +152,7 @@ case `hostname -s` in
         # fuchsia - 13
         #PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
         # RGB for st:
-        PS1="\e[30;48;2;255;0;255m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
+        PS1="\e[30;48;2;255;0;255m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
         ;;
     babbage*)
         # cyan - 96
