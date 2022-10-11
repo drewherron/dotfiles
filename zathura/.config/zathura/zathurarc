@@ -8,8 +8,8 @@
 # ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░     ░░░░░░░░
 
 # Fullscreen
-set window-height 3000
-set window-width 3000
+#set window-height 3000
+#set window-width 3000
 
 # Colors (mostly green)
 set default-bg                "#000000"
