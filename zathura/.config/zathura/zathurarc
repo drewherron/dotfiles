@@ -125,7 +125,7 @@ set recolor-darkcolor         "#ffc533"
 #set statusbar-h-padding 8
 #set statusbar-v-padding 2
 #set n-completion-items 15
-#set font monospace normal 9
+set font "Cascadia Mono 10"
 
 # guioptions is a string containing:
 # c - command line
