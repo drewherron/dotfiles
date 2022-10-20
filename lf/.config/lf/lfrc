@@ -1,6 +1,13 @@
 # interpreter for shell commands
 set shell sh
 
+# Use alt for vim movement keys in Colemak-DH
+
+map <a-m> updir
+map <a-n> down
+map <a-e> up
+map <a-i> open
+
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -222,5 +229,14 @@ cmd bulk-rename ${{
     rm $old $new
     lf -remote "send $id unselect"
 }}
-
 map <a-r> bulk-rename
+
+
+cmd newfold ${{
+    set -f
+    printf "Directory name: "
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+map <a-n> newfold
