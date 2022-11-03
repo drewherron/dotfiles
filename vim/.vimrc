@@ -12,22 +12,22 @@
 """"""""""""
 " <Alt> always puts movement keys in the normal place
 " TODO Testing with Colemak-DH
-nnoremap <Esc>m h
-nnoremap <Esc>n gj
-nnoremap <Esc>e gk
-nnoremap <Esc>i l
-inoremap <Esc>m <Left>
-inoremap <Esc>n <Down>
-inoremap <Esc>e <Up>
-inoremap <Esc>i <Right>
-vnoremap <Esc>m <Left>
-vnoremap <Esc>n <Down>
-vnoremap <Esc>e <Up>
-vnoremap <Esc>i <Right>
+"nnoremap <Esc>m h
+"nnoremap <Esc>n gj
+"nnoremap <Esc>e gk
+"nnoremap <Esc>i l
+"inoremap <Esc>m <Left>
+"inoremap <Esc>n <Down>
+"inoremap <Esc>e <Up>
+"inoremap <Esc>i <Right>
+"vnoremap <Esc>m <Left>
+"vnoremap <Esc>n <Down>
+"vnoremap <Esc>e <Up>
+"vnoremap <Esc>i <Right>
 
 " Move vertically by visual line
-"nnoremap j gj
-"nnoremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " Remap ESC key
 "inoremap kj <Esc>
