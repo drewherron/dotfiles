@@ -6,8 +6,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias ll="ls -ahlF --group-directories-first"
-alias la="ls -A"
-alias l="ls -CF"
+alias la="ls -A --group-directories-first"
+alias l="ls -CF --group-directories-first"
 
 alias cat="batcat"
 alias cls="clear"
