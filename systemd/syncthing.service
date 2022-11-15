@@ -1,0 +1,14 @@
+[Unit]
+Description=Decentralized file synchronization
+After=network.target
+StartLimitIntervalSec=0[Service]
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=drew
+ExecStart=/usr/bin/syncthing
+
+[Install]
+WantedBy=multi-user.target
