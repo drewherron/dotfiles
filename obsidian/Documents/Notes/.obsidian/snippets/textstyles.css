@@ -18,10 +18,10 @@
   --e-h5-color: #ffff00;
 
   --e-title-size: 40px;
-  --e-h1-size: 32px;
-  --e-h2-size: 30px;
-  --e-h3-size: 27px;
-  --e-h4-size: 24px;
+  --e-h1-size: 28px;
+  --e-h2-size: 26px;
+  --e-h3-size: 20px;
+  --e-h4-size: 22px;
   --e-h5-size: 20px;
 
   --p-title-color: black;
@@ -32,10 +32,10 @@
   --p-h5-color: black;
 
   --p-title-size: 40px;
-  --p-h1-size: 32px;
-  --p-h2-size: 30px;
-  --p-h3-size: 27px;
-  --p-h4-size: 24px;
+  --p-h1-size: 28px;
+  --p-h2-size: 26px;
+  --p-h3-size: 23px;
+  --p-h4-size: 22px;
   --p-h5-size: 20px;
 }
 
@@ -76,7 +76,7 @@
   font-size: var(--e-h2-size);
   color: var(--e-h2-color);
 }
-.HyperMD-header-3
+.cm-header-3
 {
   font-family: var(--editor-font-family);
   font-size: var(--e-h3-size);
@@ -133,3 +133,19 @@
   color: var(--h1-color);
 }
 */
+
+.thead
+{
+  font-family: var(--editor-font-family);
+  font-size: var(--e-h3-size);
+  color: var(--preview-font-color);
+}
+
+.cm-formatting-header
+{
+    color: #666666;
+}
+.cm-formatting-header-3
+{
+    color: #666666;
+}
