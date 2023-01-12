@@ -8,7 +8,9 @@
   --editor-font-size: 19px;
   --editor-font-color: #00ffff;
   --preview-font-size: 21px;
-  --preview-font-color: #000000;
+  --preview-font-color: #dadada;
+  /* --preview-bg-color: #E9DCC9; */
+  --preview-bg-color: #1e1e1e;
 
   --e-title-color: #00ff00;
   --e-h1-color: #00ff00;
@@ -53,7 +55,7 @@
   font-family: var(--preview-font-family);
   font-size: var(--preview-font-size);
   color: var(--preview-font-color);
-  background: #E9DCC9;
+  background: var(--preview-bg-color);
 }
 
 /* Title */
