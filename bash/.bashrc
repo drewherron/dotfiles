@@ -10,7 +10,6 @@ export MANPATH=/usr/local/man:/usr/man:/usr/share/man
 export MORE="-c"
 export PAGER=less
 # Personal bin directory
-export PATH=$PATH:~/bin
 
 # Scripts
 source ~/bin/bashmarks.sh
@@ -247,4 +246,15 @@ extract ()
 function cd {
     builtin cd "$@" && ls -F --group-directories-first
 }
+
+# KMONAD
+# Not ready for this yet
+# Where should this go when I'm ready?
+# my x270 kbd is platform-i8042-serio-0-event-kbd
+
+#KBD_DEV=$(find /dev/input/by-path/*kbd* | fzf)
+#export KBD_DEV
+#KBDCFG=$(envsubst < kmonad.kbd)
+#
+#kmonad <(echo "$KBDCFG")
 
