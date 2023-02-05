@@ -11,6 +11,7 @@
   --preview-font-color: #dadada;
   /* --preview-bg-color: #E9DCC9; */
   --preview-bg-color: #1e1e1e;
+  --code-bg-color: #000000;
 
   --e-title-color: #00ff00;
   --e-h1-color: #00ff00;
@@ -56,6 +57,11 @@
   font-size: var(--preview-font-size);
   color: var(--preview-font-color);
   background: var(--preview-bg-color);
+}
+
+.markdown-preview-section pre code {
+{
+    background: var(--code-bg-color);
 }
 
 /* Title */

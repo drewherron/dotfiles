@@ -203,18 +203,24 @@ st.color14 : lcyan
 st.color15 : white
 st*background: lgreen
 st*foreground: black
-!st*cursorColor",  STRING,  &colorname[258] },
-!st*font",         STRING,  &font },
-!st*termname",     STRING,  &termname },
-!st*shell",        STRING,  &shell },
-!st*minlatency",   INTEGER, &minlatency },
-!st*maxlatency",   INTEGER, &maxlatency },
-!st*blinktimeout", INTEGER, &blinktimeout },
-!st*bellvolume",   INTEGER, &bellvolume },
-!st*tabspaces",    INTEGER, &tabspaces },
-!st*borderpx",     INTEGER, &borderpx },
-!st*cwscale",      FLOAT,   &cwscale },
-!st*chscale",      FLOAT,   &chscale },
+!st*cursorColor,  STRING,  &colorname[258] },
+!st*font,         STRING,  &font },
+!st*termname,     STRING,  &termname },
+!st*shell,        STRING,  &shell },
+!st*minlatency,   INTEGER, &minlatency },
+!st*maxlatency,   INTEGER, &maxlatency },
+!st*blinktimeout, INTEGER, &blinktimeout },
+!st*bellvolume,   INTEGER, &bellvolume },
+!st*tabspaces,    INTEGER, &tabspaces },
+!st*borderpx,     INTEGER, &borderpx },
+!st*cwscale,      FLOAT,   &cwscale },
+!st*chscale,      FLOAT,   &chscale },
 
 Sxiv.background: #000000
 Sxiv.foreground: #00C0FF
+
+!Emacs.font : Cascadia Mono
+Emacs.font:             Cascadia Mono:style=Semibold
+Emacs.boldFont:         Cascadia Mono:style=Bold
+Emacs.italicFont:       Cascadia Mono:style=Italic
+Emacs.bolditalicFont:   Cascadia Mono:style=Bold Italic

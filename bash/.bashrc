@@ -57,6 +57,8 @@ if [ -n "$(command -v vim)" ]; then
     EDITOR=vim
 fi
 export EDITOR
+#export EDITOR='emacsclient -t'
+#export VISUAL='emacsclient -t'
 
 # Activate vi mode with <Escape>
 set -o vi
