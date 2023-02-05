@@ -102,6 +102,7 @@ cmd open ${{
         |application/vnd.oasis.opendocument.text\
         |application/vnd.ms-excel\
         |text/rtf) open -a LibreOffice.app ;;
+      (org) emacs -nw $f >/dev/null 2>&1 ;;
       (text/*) $EDITOR $fx;;
       (image/x-xcf) nohup gimp $f >/dev/null 2>&1 ;;
       (image/svg+xml) display -- $f ;;
@@ -110,7 +111,6 @@ cmd open ${{
       #(audio/*) mpv --audio-display=no $f >/dev/null ;;
       (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
       (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
-      (application/x-bittorrent) open -a Transmission.app ;;
       (application/zlib) open ;;
       # Testing $OPENER (seems to work better)
       (*) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
