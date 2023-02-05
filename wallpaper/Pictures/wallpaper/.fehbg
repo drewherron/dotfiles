@@ -1,3 +1,3 @@
 #!/bin/sh
-#feh --no-fehbg --bg-scale $HOME/Pictures/wallpaper/other/red-koi-enso.jpg
-feh --no-fehbg --bg-scale $HOME/Pictures/wallpaper/other/trees2.png $HOME/Pictures/wallpaper/other/trees1.png
+feh --no-fehbg --bg-scale $HOME/Pictures/wallpaper/other/koi.jpeg
+#feh --no-fehbg --bg-scale $HOME/Pictures/wallpaper/other/trees2.png $HOME/Pictures/wallpaper/other/trees1.png
