@@ -1,4 +1,6 @@
 /home/drew/.config|config
+/home/drew/.config/emacs|emacs
+/home/drew/org|org
 /home/drew/.local/share/Trash/files|trash
 /home/drew/Documents|doc
 /home/drew/Documents|documents
@@ -10,6 +12,7 @@
 /home/drew/Documents/CS/251|251
 /home/drew/Documents/CS/302|302
 /home/drew/Documents/CS/333|333
+/home/drew/Documents/CS/333/labs/lab3/files|lab
 /home/drew/Documents/Notes|notes
 /home/drew/Documents/PSU|psu
 /home/drew/Documents/PSU/LING|ling
@@ -26,12 +29,10 @@
 /home/drew/Projects|pro
 /home/drew/Projects/aldalome|aldalome
 /home/drew/Projects/keyboard|keyboard
+/home/drew/Projects/xv6|xv6
 /home/drew/src|src
 /home/drew/src/dwm|dwm
 /home/drew/src/st|st
 /home/drew/src/dmenu|dmenu
 /home/drew/Videos|videos
 /home/drew/Videos|vid
-/home/drew/.config/emacs|emacs
-/home/drew/Documents/CS/333/labs/lab2/files|lab
-/home/drew/Projects/xv6|xv6
