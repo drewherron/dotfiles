@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#sh $HOME/Pictures/wallpaper/.fehbg &
-xsetroot -solid black &
+sh $HOME/Pictures/wallpaper/.fehbg &
+#xsetroot -solid black &
 
 xautolock -time 10 -locker slock_off &
 
