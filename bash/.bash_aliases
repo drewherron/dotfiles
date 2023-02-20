@@ -19,7 +19,7 @@ alias gh="history|grep"
 alias sus="slock_off && systemctl suspend"
 
 alias py="python3"
-alias e="emacsclient --tty"
+alias e="emacsclient -nw -s /tmp/emacs1000/server"
 alias v="vim"
 alias z="zathura"
 alias zyp="zypper"
