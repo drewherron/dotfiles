@@ -16,13 +16,12 @@ alias mv="mv -vi"
 alias tree="tree -C"
 alias gh="history|grep"
 #alias grep="grep --color"
-alias sus="slock_off && systemctl suspend"
+alias sus="slock_off"
 
 alias py="python3"
 alias e="emacsclient -nw -s /tmp/emacs1000/server"
 alias v="vim"
 alias z="zathura"
-alias zyp="zypper"
 
 # Trash/rm
 #alias rm="rm -v"
