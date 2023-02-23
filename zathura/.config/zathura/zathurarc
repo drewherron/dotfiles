@@ -11,6 +11,9 @@
 #set window-height 3000
 #set window-width 3000
 
+# Clipboard
+set selection-clipboard clipboard
+
 # Colors (mostly green)
 set default-bg                "#000000"
 set default-fg                "#00ff00"
