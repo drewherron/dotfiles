@@ -4,6 +4,7 @@
 	username = drewherron
 [core]
 	editor = vim
+	excludesfile = /home/drew/.gitignore
 [pager]
     branch = false
 [pull]
