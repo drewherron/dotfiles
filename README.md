@@ -1,6 +1,6 @@
 # dotfiles
 Just my random Linux configuration files.
 
-Managing these with GNU Stow.
+Managing most of these with GNU Stow.
 
-I'm usually on Debian, and increasingly on Gentoo, but that probably won't make much difference here.
+Branches for Debian, Gentoo, and desktop (which currently is also Debian but requires a few differenct scripts).
