@@ -9,7 +9,7 @@ alias ll="ls -ahlF --group-directories-first"
 alias la="ls -A --group-directories-first"
 alias l="ls -CF --group-directories-first"
 
-alias cat="batcat"
+alias cat="bat"
 alias cls="clear"
 alias cp="cp -vi"
 alias mv="mv -vi"
