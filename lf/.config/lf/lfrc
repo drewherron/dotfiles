@@ -96,7 +96,8 @@ cmd open ${{
     test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
       (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
-      (application/csv) vd $fx ;;
+      #(application/csv) vd $fx ;; #This is cool but vim is just better for now
+      (application/csv) vim $fx ;;
       (application/msword\
         |application/vnd.openxmlformats-officedocument.*\
         |application/vnd.oasis.opendocument.text\
