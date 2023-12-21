@@ -22,6 +22,10 @@
 #
 # Your bookmarks are stored in the ~/.bookmarks file
 
+# !!!!!!!!!!!!!!!!!!
+# Changing from "go" to "go-bookmark" to avoid conflict with the language
+# Then add bash alias to "g"
+# !!!!!!!!!!!!!!!!!!
 bookmarks_file=~/.bookmarks
 
 # Create bookmarks_file it if it doesn't exist
@@ -52,14 +56,14 @@ bookmarksshow (){
   cat ~/.bookmarks | awk '{ printf "%-40s%-40s%s\n",$1,$2,$3}' FS=\|
 }
 
-go(){
+go-bookmark(){
   bookmark_name=$1
 
   bookmark=`grep "|$bookmark_name$" "$bookmarks_file"`
 
   if [[ -z $bookmark ]]; then
     echo 'Invalid name, please provide a valid bookmark name. For example:'
-    echo '  go foo'
+    echo '  g foo'
     echo
     echo 'To bookmark a folder, go to the folder then do this (naming the bookmark 'foo'):'
     echo '  bookmark foo'
@@ -69,9 +73,9 @@ go(){
   fi
 }
 
-_go_complete(){
+_go-bookmark_complete(){
   # Get a list of bookmark names, then grep for what was entered to narrow the list
   cat $bookmarks_file | cut -d\| -f2 | grep "$2.*"
 }
 
-complete -C _go_complete -o default go
+complete -C _go-bookmark_complete -o default go-bookmark
