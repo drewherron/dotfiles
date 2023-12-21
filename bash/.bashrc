@@ -57,11 +57,11 @@ if [ -n "$(command -v vim)" ]; then
     EDITOR=vim
 fi
 export EDITOR
-#export EDITOR='emacsclient -t'
-#export VISUAL='emacsclient -t'
+#export EDITOR="emacsclient"
+#export VISUAL=$EDITOR
 
 # Activate vi mode with <Escape>
-set -o vi
+#set -o vi
 
 # Get current branch in git repo
 function parse_git_branch() {
@@ -260,3 +260,4 @@ function cd {
 #
 #kmonad <(echo "$KBDCFG")
 
+. "$HOME/.cargo/env"

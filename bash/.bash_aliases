@@ -20,6 +20,7 @@ alias sus="slock_off && systemctl suspend"
 
 alias py="python3"
 alias e="emacsclient --tty"
+alias g=go-bookmark
 alias v="vim"
 alias z="zathura"
 alias zyp="zypper"
@@ -31,5 +32,5 @@ alias rm="echo Use 'del', or the full path i.e. '/bin/rm'"
 alias del="trash-put" # works better
 
 # Wrapper scripts
-alias lf="lfrun"
+#alias lf="lfrun"
 alias sxiv="sxivrun"
