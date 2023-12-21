@@ -61,7 +61,7 @@ export EDITOR
 #export VISUAL=$EDITOR
 
 # Activate vi mode with <Escape>
-set -o vi
+#set -o vi
 
 # Get current branch in git repo
 function parse_git_branch() {
@@ -260,3 +260,4 @@ function cd {
 #
 #kmonad <(echo "$KBDCFG")
 
+. "$HOME/.cargo/env"
