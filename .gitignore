@@ -5,3 +5,6 @@
 **/mpd/state
 **/mpv/watch_later
 *.un~
+vim/.vim/autoload/
+vim/.vim/colors/aldalome.vim
+vim/.vim/plugged/
