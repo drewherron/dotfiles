@@ -9,7 +9,6 @@ export MANPATH=/usr/local/man:/usr/man:/usr/share/man
 #export LESS="FRQiMcdeXz4" #Review this
 export MORE="-c"
 export PAGER=less
-# Personal bin directory
 
 # Scripts
 source ~/bin/bashmarks.sh
@@ -51,17 +50,8 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# Use vim editor, fall back to vi
-EDITOR=vi
-if [ -n "$(command -v vim)" ]; then
-    EDITOR=vim
-fi
-export EDITOR
-#export EDITOR="emacsclient"
-#export VISUAL=$EDITOR
-
-# Activate vi mode with <Escape>
-#set -o vi
+export EDITOR="emacsclient -nw"
+export VISUAL=$EDITOR
 
 # Get current branch in git repo
 function parse_git_branch() {
