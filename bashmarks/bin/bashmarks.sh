@@ -73,9 +73,14 @@ go-bookmark(){
   fi
 }
 
-_go-bookmark_complete(){
+#_go-bookmark_complete(){
   # Get a list of bookmark names, then grep for what was entered to narrow the list
-  cat $bookmarks_file | cut -d\| -f2 | grep "$2.*"
+#  cat $bookmarks_file | cut -d\| -f2 | grep "$2.*"
+#}
+
+_go-bookmark_complete(){
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(grep -oP "(?<=\|)$cur\w*" "$bookmarks_file"))
 }
 
 complete -C _go-bookmark_complete -o default go-bookmark

@@ -20,10 +20,12 @@ alias sus="slock_off && systemctl suspend"
 
 alias py="python3"
 alias e="emacsclient --tty"
-alias g=go-bookmark
 alias v="vim"
 alias z="zathura"
 alias zyp="zypper"
+
+alias g=go-bookmark
+complete -F _go-bookmark_complete -o default g
 
 # Trash/rm
 #alias rm="rm -v"
