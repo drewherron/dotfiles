@@ -7,8 +7,7 @@ StartLimitIntervalSec=0[Service]
 Type=simple
 Restart=always
 RestartSec=1
-User=drew
 ExecStart=/usr/bin/syncthing
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
