@@ -92,31 +92,31 @@ map O $mimeopen --ask $f
 #}}
 
 # Even better?
-cmd open ${{
-    test -L $f && f=$(readlink -f $f)
-    case $(file --mime-type $f -b) in
-      (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
-      #(application/csv) vd $fx ;; #This is cool but vim is just better for now
-      (application/csv) vim $fx ;;
-      (application/msword\
-        |application/vnd.openxmlformats-officedocument.*\
-        |application/vnd.oasis.opendocument.text\
-        |application/vnd.ms-excel\
-        |text/rtf) open -a LibreOffice.app ;;
-      (org) emacs -nw $f >/dev/null 2>&1 ;;
-      (text/*) $EDITOR $fx;;
-      (image/x-xcf) nohup gimp $f >/dev/null 2>&1 ;;
-      (image/svg+xml) display -- $f ;;
-      #(image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -ai 2>/dev/null | lf-select ;;
-      (image/*) sxivrun $fx ;;
-      #(audio/*) mpv --audio-display=no $f >/dev/null ;;
-      (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
-      (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
-      (application/zlib) open ;;
-      # Testing $OPENER (seems to work better)
-      (*) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
-}}
+#cmd open ${{
+#    test -L $f && f=$(readlink -f $f)
+#    case $(file --mime-type $f -b) in
+#      (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
+#      #(application/csv) vd $fx ;; #This is cool but vim is just better for now
+#      (application/csv) vim $fx ;;
+#      (application/msword\
+#        |application/vnd.openxmlformats-officedocument.*\
+#        |application/vnd.oasis.opendocument.text\
+#        |application/vnd.ms-excel\
+#        |text/rtf) open -a LibreOffice.app ;;
+#      (org) emacsclient $f >/dev/null 2>&1 ;;
+#      (text/*) $EDITOR $fx >/dev/null 2>&1;;
+#      (image/x-xcf) nohup gimp $f >/dev/null 2>&1 ;;
+#      (image/svg+xml) display -- $f ;;
+#      #(image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -ai 2>/dev/null | lf-select ;;
+#      (image/*) sxivrun $fx ;;
+#      #(audio/*) mpv --audio-display=no $f >/dev/null ;;
+#      (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
+#      (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
+#      (application/zlib) open ;;
+#      # Testing $OPENER (seems to work better)
+#      (*) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+#    esac
+#}}
 #      (*)
 #        case ${f:e} in
 #          (dmg) hdiutil attach "$fx" ;;
@@ -125,6 +125,28 @@ cmd open ${{
 #        ;;
 #    esac
 
+# From Luke
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR -nw $fx;;
+	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+    image/*) nsxiv $f >/dev/null 2>&1;;
+    #image/*) find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.gif' -o -iname '*.webp' -o -iname '*.avif' -o -iname '*.tif' -o -iname '*.ico' \) -exec setsid -f nsxiv -aio {} + ;;
+#	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+    (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
+#    (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+	application/pgp-encrypted) $EDITOR -nw $fx ;;
+	application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/octet-stream|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+    
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
