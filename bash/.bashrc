@@ -6,7 +6,6 @@
 # Paths
 export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/local/apps/bin:/home/drew/.local/bin:/home/drew/bin:/usr/games
 export MANPATH=/usr/local/man:/usr/man:/usr/share/man
-#export LESS="FRQiMcdeXz4" #Review this
 export MORE="-c"
 export PAGER=less
 
@@ -72,7 +71,8 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-export EDITOR="emacsclient -nw"
+# Editor
+export EDITOR="emacsclient"
 export VISUAL=$EDITOR
 set -o emacs
 
