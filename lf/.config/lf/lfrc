@@ -133,7 +133,7 @@ cmd open ${{
         text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR -nw $fx;;
 	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
 	image/svg+xml) display -- $f ;;
-    image/*) nsxiv $f >/dev/null 2>&1;;
+    image/*) piew $f >/dev/null 2>&1;;
     #image/*) find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.gif' -o -iname '*.webp' -o -iname '*.avif' -o -iname '*.tif' -o -iname '*.ico' \) -exec setsid -f nsxiv -aio {} + ;;
 #	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
