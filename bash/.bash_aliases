@@ -17,6 +17,7 @@ alias tree="tree -C"
 alias gh="history|grep"
 #alias grep="grep --color"
 alias sus="slock_off && systemctl suspend"
+alias sa="source venv/bin/activate"
 
 alias py="python3"
 alias e="emacsclient --tty"
