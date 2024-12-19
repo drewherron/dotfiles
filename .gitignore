@@ -5,6 +5,7 @@
 **/mpd/state
 **/mpv/watch_later
 *.un~
+.bash_secrets
 vim/.vim/autoload/
 vim/.vim/colors/aldalome.vim
 vim/.vim/plugged/
