@@ -1,7 +1,15 @@
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
+# .bash_profile is executed for login shells
+
+# Load bashrc for login shells too
+if [ -f "$HOME/.bashrc" ]; then
+    source "$HOME/.bashrc"
 fi
-. "$HOME/.cargo/env"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+# SSH Agent configuration
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    # Start SSH agent if not running
+    eval "$(ssh-agent -s)" > "$HOME/.ssh-agent-env"
+
+    # Add default key if it exists
+    [ -f "$HOME/.ssh/id_rsa" ] && ssh-add "$HOME/.ssh/id_rsa" >/dev/null 2>&1
+fi
