@@ -1,119 +1,68 @@
-# All prompt-related code can go here
+# Prompt configuration and git integration
+
+# Colors
+if [[ -z "${PROMPT_HOSTNAME_COLOR}" ]]; then
+    readonly PROMPT_HOSTNAME_COLOR='\033[30;48;2'  # Base color for hostname
+    readonly PROMPT_RESET='\e[0m'
+    readonly PROMPT_GIT_COLOR='\e[0;96m'
+fi
+
+# Host-specific colors (RGB values)
+if [[ -z "${HOST_COLORS[*]}" ]]; then
+    declare -A HOST_COLORS=(
+        ['ada']='255;0;255'    # Fuchsia
+        ['rita']='255;0;255'   # Fuchsia
+        ['babbage']='0;255;255'  # Cyan
+        ['sq28']='0;255;255'   # Cyan
+        ['default']='255;183;0'  # Orange
+    )
+fi
+
+# Git status indicators
+if [[ -z "${GIT_MODIFIED}" ]]; then
+    readonly GIT_MODIFIED='!'
+    readonly GIT_UNTRACKED='?'
+    readonly GIT_AHEAD='*'
+    readonly GIT_NEWFILE='+'
+    readonly GIT_RENAMED='>'
+    readonly GIT_DELETED='x'
+fi
+
+parse_git_branch() {
+    local branch status
+    branch=$(git branch 2>/dev/null | sed -n 's/^\* //p')
+    [ -n "$branch" ] && printf "[%s%s]" "$branch" "$(parse_git_dirty)"
+}
+
+parse_git_dirty() {
+    local git_status bits=''
+    git_status=$(git status --porcelain 2>/dev/null)
     
-# Get current branch in git repo
-function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}]"
-	else
-		echo ""
-	fi
+    # Check various git states using grep
+    [[ $(echo "$git_status" | grep '^[ MARC]M') ]] && bits+="$GIT_MODIFIED"
+    [[ $(echo "$git_status" | grep '^??') ]] && bits+="$GIT_UNTRACKED"
+    [[ $(git status 2>/dev/null | grep 'ahead') ]] && bits+="$GIT_AHEAD"
+    [[ $(echo "$git_status" | grep '^A') ]] && bits+="$GIT_NEWFILE"
+    [[ $(echo "$git_status" | grep '^R') ]] && bits+="$GIT_RENAMED"
+    [[ $(echo "$git_status" | grep '^D') ]] && bits+="$GIT_DELETED"
+    
+    [ -n "$bits" ] && printf " %s" "$bits"
 }
 
-# Get current status of git repo
-function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
+set_prompt_color() {
+    local hostname=$(hostname -s)
+    local color=${HOST_COLORS[$hostname]:-${HOST_COLORS['default']}}
+    printf "%s;%sm" "$PROMPT_HOSTNAME_COLOR" "$color"
 }
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+# Set prompt only if PS1 is defined (interactive shell)
+if [ -n "$PS1" ]; then
+    PS1="\[$(set_prompt_color)\] \h \[$PROMPT_RESET\] \w \[$PROMPT_GIT_COLOR\]\$(parse_git_branch)\[$PROMPT_RESET\]\n \u \$ "
 fi
 
-# Set two-line prompt
-if [ "$PS1" ]; then
-    # Original taken from Jesse Chaney
-    #PS1="\e[7m \h \e[27;49;39m \w\n\u \$ "
-    # Add hostname in 256-color (208 = orange)
-    #PS1="\e[30;48:5:208m \h \e[27;49;39m \w\n \u \$  "
-    # Add git branch/status
-    #PS1="\e[30;48:5:208m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-    # In st we have to use the RGB value:
-    PS1="\033[30;48;2;255;183;0m \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$ "
-fi
-
-# Change prompt color based on hostname
-case `hostname -s` in
-    ada)
-        # fuchsia - 13
-        #PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
-        # RGB for st:
-        PS1="\e[30;48;2;255;0;255m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
-        ;;
-    rita)
-        # fuchsia - 13
-        #PS1="\e[30;48:5:13m\]  \h  \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
-        # RGB for st:
-        PS1="\e[30;48;2;255;0;255m\] \h \e[27;49;39m\] \w \e[0;96m\]\`parse_git_branch\`\e[27;49;39m\]\n\u \$  "
-        ;;
-    babbage*)
-        # cyan - 96
-        #PS1="\e[30;48:5:96m\] \h \e[27;49;39m\] \w \e[0;13m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-        # RGB for st
-        PS1="\e[30;48;2;0;255;255\] \h \e[27;49;39m\] \w \e[0;13m\]\`parse_git_branch\`\e[27;49;39m\]\n \u \$  "
-        ;;
-    *)
-        ;;
-esac
-
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
+# Set terminal title if using xterm
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+        ;;
 esac
