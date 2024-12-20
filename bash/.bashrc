@@ -102,6 +102,9 @@ cd() {
     builtin cd "$@" && ls -F --group-directories-first
 }
 
+# Enable keypad (fixes Del key in st)
+tput smkx 2>/dev/null
+
 # Python environment setup
 if [ -d "$HOME/.pyenv" ]; then
     export PYENV_ROOT="$HOME/.pyenv"
