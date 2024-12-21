@@ -2,11 +2,10 @@
 set shell sh
 
 # Use alt for vim movement keys in Colemak-DH
-
-map <a-m> updir
-map <a-n> down
-map <a-e> up
-map <a-i> open
+#map <a-m> updir
+#map <a-n> down
+#map <a-e> up
+#map <a-i> open
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -60,89 +59,144 @@ map O $mimeopen --ask $f
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
-#cmd open ${{
-#    test -L $f && f=$(readlink -f $f)
-#    case $(file --mime-type $f -b) in
-#        text/*) $EDITOR $fx;;
-#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-#    esac
-#}}
-# Better version
-#cmd open ${{
-#    case $(file --mime-type "$(readlink -f $f)" -b) in
-#	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-#	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-#        text/*|application/json|inode/x-empty) $EDITOR $fx;;
-#	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-#	image/svg+xml) display -- $f ;;
-#	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-#		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
-#			[ -z "$file" ] && continue
-#			lf -remote "send select \"$file\""
-#			lf -remote "send toggle"
-#		done &
-#		;;
-#	audio/*) mpv --audio-display=no $f ;;
-#	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-#	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-#      (application/x-bittorrent) open -a Transmission.app ;;
-#	application/pgp-encrypted) $EDITOR $fx ;;
-#        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-#    esac
-#}}
+# --------------------------------
 
-# Even better?
-#cmd open ${{
-#    test -L $f && f=$(readlink -f $f)
-#    case $(file --mime-type $f -b) in
-#      (application/pdf|application/vnd*|application/epub*) nohup zathura --mode=fullscreen $fx >/dev/null 2>&1 ;;
-#      #(application/csv) vd $fx ;; #This is cool but vim is just better for now
-#      (application/csv) vim $fx ;;
-#      (application/msword\
-#        |application/vnd.openxmlformats-officedocument.*\
-#        |application/vnd.oasis.opendocument.text\
-#        |application/vnd.ms-excel\
-#        |text/rtf) open -a LibreOffice.app ;;
-#      (org) emacsclient $f >/dev/null 2>&1 ;;
-#      (text/*) $EDITOR $fx >/dev/null 2>&1;;
-#      (image/x-xcf) nohup gimp $f >/dev/null 2>&1 ;;
-#      (image/svg+xml) display -- $f ;;
-#      #(image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -ai 2>/dev/null | lf-select ;;
-#      (image/*) sxivrun $fx ;;
-#      #(audio/*) mpv --audio-display=no $f >/dev/null ;;
-#      (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
-#      (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
-#      (application/zlib) open ;;
-#      # Testing $OPENER (seems to work better)
-#      (*) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-#    esac
-#}}
-#      (*)
-#        case ${f:e} in
-#          (dmg) hdiutil attach "$fx" ;;
-#          (*) $EDITOR $fx ;;
-#        esac
-#        ;;
-#    esac
-
-# From Luke
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
-	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR -nw $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-    image/*) piew $f >/dev/null 2>&1;;
-    #image/*) find . -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.gif' -o -iname '*.webp' -o -iname '*.avif' -o -iname '*.tif' -o -iname '*.ico' \) -exec setsid -f nsxiv -aio {} + ;;
-#	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-    (audio/*) clear && exiftool $f && mpv $f >/dev/null ;;
-#    (video/*) nohup mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	application/pgp-encrypted) $EDITOR -nw $fx ;;
-	application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/octet-stream|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    # Resolve symlinks to real paths before checking MIME type
+    if [ -L "$f" ]; then
+        f="$(readlink -f "$f")"
+    fi
+    
+    # Determine the MIME type (just once)
+    mime="$(file --mime-type --brief "$f")"
+
+    case "$mime" in
+
+        # ======================
+        #  Office/Spreadsheet
+        # ======================
+        # Example: .xlsx => localc, or unify with LibreOffice if you prefer:
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|\
+        application/vnd.ms-excel|\
+        application/vnd.oasis.opendocument.spreadsheet)
+            setsid -f localc $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  PDF, DjVu, PostScript
+        # ======================
+        # (Includes application/octet-stream if you prefer Zathura as a fallback)
+        application/pdf|\
+        application/vnd.djvu|\
+        application/postscript|\
+        application/octet-stream)
+            setsid -f zathura $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  E-Books
+        # ======================
+        # e.g. .epub
+        application/epub|\
+        application/epub+zip)
+            setsid -f zathura $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  Word Processing
+        # ======================
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document|\
+        application/msword|\
+        application/vnd.oasis.opendocument.text|\
+        application/rtf)
+            setsid -f libreoffice $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  Presentations
+        # ======================
+        # .ppt, .pptx, .odp, etc.
+        application/vnd.openxmlformats-officedocument.presentationml.presentation|\
+        application/vnd.ms-powerpoint|\
+        application/vnd.oasis.opendocument.presentation|\
+        application/vnd.oasis.opendocument.presentation-template)
+            setsid -f libreoffice $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  Other Office Docs
+        # ======================
+        # (e.g. .odg, .fodg, .odb, etc.)
+        application/vnd.oasis.opendocument.graphics|\
+        application/vnd.oasis.opendocument.graphics-template|\
+        application/vnd.oasis.opendocument.formula|\
+        application/vnd.oasis.opendocument.database)
+            setsid -f libreoffice $fx >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  Plain Text & Friends
+        # ======================
+        # e.g. .txt, .json, .srt, etc.
+        text/*|application/json|inode/x-empty|application/x-subrip)
+            $EDITOR -nw $fx
+            ;;
+
+        # ======================
+        #  Images
+        # ======================
+        # XCF => GIMP
+        image/x-xcf)
+            setsid -f gimp "$f" >/dev/null 2>&1
+            ;;
+
+        # SVG => ImageMagick's display
+        image/svg+xml)
+            display -- "$f"
+            ;;
+
+        # All other images => piew
+        image/*)
+            setsid -f piew "$f" >/dev/null 2>&1
+            # 
+            # (Alternate gallery approach using sxiv/nsxiv):
+            #   find . -type f \( -iname '*.png' -o -iname '*.jpg' ... \) \
+            #        -exec setsid -f nsxiv -aio {} + 
+            ;;
+        
+        # ======================
+        #  Audio
+        # ======================
+        # Example: show metadata in terminal, then play with mpv
+        audio/*)
+            clear
+            exiftool "$f"
+            mpv "$f" >/dev/null
+            ;;
+        
+        # ======================
+        #  Video
+        # ======================
+        video/*)
+            setsid -f mpv "$f" -quiet >/dev/null 2>&1
+            ;;
+
+        # ======================
+        #  PGP
+        # ======================
+        application/pgp-encrypted)
+            $EDITOR -nw $fx
+            ;;
+
+        # ======================
+        #  Fallback
+        # ======================
+        # If nothing else matches, use your default $OPENER 
+        *)
+            for f in $fx; do
+                setsid -f "$OPENER" "$f" >/dev/null 2>&1
+            done
+            ;;
     esac
 }}
 
