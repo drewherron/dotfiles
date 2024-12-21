@@ -36,13 +36,7 @@ else
     echo "Warning: ~/bin/bashmarks.sh not found"
 fi
 
-# History configuration
-HISTCONTROL=ignoreboth
-HISTIGNORE="?:??:history:history -d *:gh *:clear:cls:ls *:go *:pwd:sus:git status"
-HISTTIMEFORMAT="%d/%m %T "
-HISTSIZE=10000
-HISTFILESIZE=20000
-shopt -s histappend
+# Update lines and columns when window size changes
 shopt -s checkwinsize
 
 # Editor configuration
