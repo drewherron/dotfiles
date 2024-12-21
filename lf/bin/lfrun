@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Create a unique FIFO (named pipe)
+export FIFO_UEBERZUG="$(mktemp -u --suffix=.ueberzug)"
+mkfifo "$FIFO_UEBERZUG"
+
+# Start tail -f on the FIFO and pipe into ueberzug so ueberzug never sees EOF.
+# If it sees EOF, it exits. We want it to stay running while lf is open.
+tail -f "$FIFO_UEBERZUG" | ueberzug layer --parser json --silent &
+ueberzug_pid=$!
+
+# Run lf in the same environment so your preview script has $FIFO_UEBERZUG set
+lf "$@"
+
+# Once lf exits, kill ueberzug and the tail process
+kill "$ueberzug_pid"
+pkill -P $$ tail  # kill any tail child process from *this* script
+
+# Clean up
+rm -f "$FIFO_UEBERZUG"
