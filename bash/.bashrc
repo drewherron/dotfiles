@@ -8,7 +8,7 @@ esac
 
 # Path configuration
 # Instead of overwriting PATH, append to it
-export PATH="$PATH:/usr/local/apps/bin:$HOME/.local/bin:$HOME/bin:/usr/games"
+export PATH="$PATH:/usr/local/apps/bin:$HOME/bin:$HOME/.local/bin:/usr/games"
 export MANPATH="/usr/local/man:/usr/man:/usr/share/man"
 
 # Load secrets/environment variables
