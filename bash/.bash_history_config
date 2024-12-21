@@ -1,0 +1,171 @@
+# History Configuration
+
+# History sizes
+HISTSIZE=5000               # Max lines in-memory
+HISTFILESIZE=5000           # Max lines in ~/.bash_history
+HIST_BACKUP_SIZE=50000      # Max lines in each backup file
+HIST_KEEP_LINES=1000        # Lines to keep in ~/.bash_history after rotation
+
+# Tell Bash to record timestamps. The lines in .bash_history will be interleaved
+# commands + lines that start with "#<epoch>".
+HISTTIMEFORMAT="%F %T "  # For interactive `history` display, though the real file still uses "#<epoch>"
+
+# Ignore duplicates and certain commands
+HISTCONTROL=ignoreboth
+HISTIGNORE="?:??:clear:cls:ls:ls *:ll:la:pwd:exit:date:* --help:history:history -d *"
+
+# Append history instead of overwriting
+shopt -s histappend
+
+# Multi-line commands in history
+shopt -s lithist
+shopt -s cmdhist
+
+# Shared history between terminals
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; _check_history_size"
+
+# Rotate if ~/.bash_history hits 5000 lines
+_check_history_size() {
+    local history_dir="$HOME/.bash_histories"
+    local current_file="$HISTFILE"
+    local line_count
+
+    mkdir -p "$history_dir"
+
+    line_count=$(wc -l < "$current_file")
+    if [ "$line_count" -ge "$HISTFILESIZE" ]; then
+        _backup_and_deduplicate_history
+    fi
+}
+
+# Deduplicate & backup the history
+_backup_and_deduplicate_history() {
+    local history_dir="$HOME/.bash_histories"
+    local temp_file="/tmp/history_dedup_$$"
+
+    # Figure out which backup file to write (create or append)
+    local latest_backup new_backup backup_lines
+    latest_backup=$(find "$history_dir" -name 'bash_history_*.txt' | sort -r | head -n1)
+    if [ -z "$latest_backup" ]; then
+        new_backup="$history_dir/bash_history_001.txt"
+    else
+        backup_lines=$(wc -l < "$latest_backup")
+        if [ "$backup_lines" -ge "$HIST_BACKUP_SIZE" ]; then
+            local current_num next_num
+            current_num="$(basename "$latest_backup" | sed 's/bash_history_\([0-9]*\).txt/\1/')"
+            next_num=$(printf "%03d" $((10#$current_num + 1)))
+            new_backup="$history_dir/bash_history_$next_num.txt"
+        else
+            new_backup="$latest_backup"
+        fi
+    fi
+
+    # 1) Concatenate ALL existing backups
+    # 2) Convert the CURRENT ~/.bash_history from epoch-based (#<timestamp>) to
+    #    lines of "YYYY-MM-DD HH:MM:SS the_command"
+    #    (skipping lines without a preceding timestamp)
+    {
+        # Existing backups (already in "YYYY-MM-DD HH:MM:SS command" format):
+        find "$history_dir" -name 'bash_history_*.txt' -exec cat {} \;
+
+        # Now parse the current ~/.bash_history
+        awk '
+            BEGIN {
+                last_ts = ""
+            }
+
+            # If line matches "#<digits>", that is our epoch timestamp
+            /^#[0-9]+$/ {
+                # remove leading "#"
+                epoch = substr($0, 2)
+                last_ts = epoch
+                next
+            }
+
+            # If line is non-empty and we have an epoch in last_ts,
+            # convert the epoch to "YYYY-MM-DD HH:MM:SS" and prepend it.
+            NF > 0 && last_ts != "" {
+                # convert the epoch
+                cmdstr = sprintf("date -d @%s +\"%%Y-%%m-%%d %%H:%%M:%%S\"", last_ts)
+                cmdstr | getline dt
+                close(cmdstr)
+
+                # Print "YYYY-MM-DD HH:MM:SS command"
+                print dt, $0
+
+                # Reset last_ts so it’s used only once
+                last_ts = ""
+                next
+            }
+
+            # If no timestamp is available, or the line is empty, skip or handle differently
+        ' "$HISTFILE"
+    } > "$temp_file"
+
+    # Now, from that big file, deduplicate by command, keeping earliest timestamp.
+    # Then sort by date + time (fields 1 & 2).
+    awk '
+    {
+        # We expect lines: "YYYY-MM-DD HH:MM:SS the_command..."
+        date  = $1
+        time  = $2
+        datetime = date " " time
+
+        # Rebuild the command from $3...
+        cmd = ""
+        for (i=3; i <= NF; i++) {
+            cmd = cmd (i==3 ? $i : " " $i)
+        }
+
+        # If we’ve never seen this command, or if this line is older, store
+        if (!(cmd in earliest)) {
+            earliest[cmd] = datetime
+        } else {
+            if (datetime < earliest[cmd]) {
+                earliest[cmd] = datetime
+            }
+        }
+    }
+    END {
+        # Print each command with its earliest date/time
+        for (c in earliest) {
+            print earliest[c], c
+        }
+    }' "$temp_file" \
+      | sort -k1,1 -k2,2 \
+      > "$new_backup"
+
+    # Now reduce ~/.bash_history to the last HIST_KEEP_LINES lines,
+    # so it doesn’t keep growing.
+    tail -n "$HIST_KEEP_LINES" "$HISTFILE" > "$HISTFILE.tmp"
+    mv "$HISTFILE.tmp" "$HISTFILE"
+
+    rm -f "$temp_file"
+
+    # Reload in-memory history so it’s consistent with the truncated file
+    history -c
+    history -r
+}
+
+# Search backups + current
+ghall() {
+    local pattern="$1"
+    local history_dir="$HOME/.bash_histories"
+    
+    if [ -z "$pattern" ]; then
+        echo "Usage: ghall <pattern>"
+        return 1
+    fi
+
+    # Search current in-memory + on-disk history first
+    history | grep -i --color=auto "$pattern"
+    
+    # Then search backups
+    find "$history_dir" -name 'bash_history_*.txt' -print0 \
+      | sort -z \
+      | xargs -0 grep -i --color=auto "$pattern" \
+      | less -FRX
+}
+
+# Simple history grep for current session
+alias gh='history | grep'
