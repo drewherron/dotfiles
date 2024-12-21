@@ -46,11 +46,6 @@ export PAGER=less
 export MORE="-c"
 set -o emacs
 
-# Load additional configurations
-for config in "$HOME"/.{bash_prompt,bash_aliases}; do
-    [ -f "$config" ] && source "$config"
-done
-
 # Enable color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -68,6 +63,20 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
+
+# Case-insensitive completion
+bind "set completion-ignore-case on"
+bind "set completion-map-case on"
+
+# Color partial matches and stats
+bind "set colored-completion-prefix on"
+bind "set colored-stats on"
+
+# More items before it shows "Display all X possibilities?" prompt
+bind "set completion-query-items 200"
+
+# Don’t page the listing if it exceeds screen size
+bind "set page-completions off"
 
 # Utility functions
 extract() {
@@ -109,6 +118,3 @@ fi
 
 # Rust setup
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-
-# Load bashmarks if available
-[ -f "$HOME/bin/bashmarks.sh" ] && source "$HOME/bin/bashmarks.sh"
