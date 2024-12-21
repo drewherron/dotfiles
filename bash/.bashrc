@@ -39,6 +39,9 @@ fi
 # Update lines and columns when window size changes
 shopt -s checkwinsize
 
+# Globstar
+shopt -s globstar
+
 # Editor configuration
 export EDITOR="emacsclient"
 export VISUAL="$EDITOR"
