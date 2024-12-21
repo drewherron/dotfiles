@@ -10,16 +10,16 @@ alias la='ls -A --group-directories-first'
 alias l='ls -CF --group-directories-first'
 alias tree='tree -C'
 
+# Colors
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+
 # Safety features
 alias cp='cp -vi'
 alias mv='mv -vi'
 # More comprehensive safety approach for rm
 alias rm='_safe_rm'
 _safe_rm() {
-    if [ "$PWD" = "$HOME" ]; then
-        echo "WARNING: You're in your home directory. Use 'del' for safer removal or '/bin/rm' for force."
-        return 1
-    fi
     echo "Use 'del' for safer removal or '/bin/rm' if you're sure."
     return 1
 }
@@ -42,15 +42,12 @@ alias cls='clear'
 alias bashreload='source ~/.bashrc && echo Bash config reloaded'
 alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
 
-# Document viewers
-alias z='zathura'
-
-# Package management
-alias zyp='zypper'
-
-# Go bookmarks
+# Bashmarks
 alias g=go-bookmark
 complete -F _go-bookmark_complete -o default g
 
-# Image viewers
+# Other
+alias lf='lfrun'
 alias sxiv='sxivrun'
+alias z='zathura'
+alias zyp='zypper'
