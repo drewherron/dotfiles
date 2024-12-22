@@ -1,12 +1,6 @@
 # interpreter for shell commands
 set shell sh
 
-# Use alt for vim movement keys in Colemak-DH
-#map <a-m> updir
-#map <a-n> down
-#map <a-e> up
-#map <a-i> open
-
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -315,9 +309,6 @@ cmd mpv-shuffle ${{
     mpv --shuffle $f
 }}
 
-map <a-p> mpv-play
-map <a-s> mpv-shuffle
-
 # Bulk rename
 cmd bulk-rename ${{
     old=$(mktemp)
@@ -337,8 +328,6 @@ cmd bulk-rename ${{
     rm $old $new
     lf -remote "send $id unselect"
 }}
-map <a-r> bulk-rename
-
 
 cmd newfold ${{
     set -f
@@ -347,7 +336,6 @@ cmd newfold ${{
     mkdir -- "$newd"
     mv -- $fx "$newd"
 }}
-map <a-n> newfold
 
 # Symlink selected files to location
 cmd symlink-selected ${{
@@ -359,3 +347,13 @@ cmd symlink-selected ${{
     # No prompt, no questions asked.
 }}
 
+# Keybindings
+map <a-p> mpv-play
+map <a-s> mpv-shuffle
+map <a-r> bulk-rename
+map <a-d> newfold
+# Colemak vim movement
+map <a-m> updir
+map <a-n> down
+map <a-e> up
+map <a-i> open
