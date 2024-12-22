@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Bluetooth MAC address of headphones
+DEVICE_MAC="82:46:1D:22:38:86"
+
+# Use bluetoothctl to check the connection status
+if bluetoothctl info "$DEVICE_MAC" | grep -q "Connected: yes"; then
+    echo "Device is connected. Disconnecting..."
+    bluetoothctl disconnect "$DEVICE_MAC"
+else
+    echo "Device is disconnected. Connecting..."
+    bluetoothctl connect "$DEVICE_MAC"
+fi

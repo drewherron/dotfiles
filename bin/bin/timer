@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Check if at least two arguments are provided
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <time in 24-hour format HHMM> <message>"
+    exit 1
+fi
+
+# Input time (HHMM)
+input_time=$1
+
+# Shift away the time argument, leaving the message
+shift
+
+# Combine all remaining arguments into a message string
+message="$*"
+
+# Extract hours and minutes
+target_hour=${input_time:0:2}
+target_minute=${input_time:2:2}
+
+# Current time in seconds since the Unix epoch
+current_time=$(date +%s)
+
+# Target time on the same day in seconds since the Unix epoch
+target_time=$(date -d "$(date +%Y-%m-%d) ${target_hour}:${target_minute}:00" +%s)
+
+# Calculate the difference in seconds
+diff=$((target_time - current_time))
+
+# If the target time is in the past, calculate for the next day
+if [ $diff -lt 0 ]; then
+    diff=$((diff + 86400)) # Add 24 hours in seconds
+fi
+
+# Wait until the target time
+sleep $diff
+
+# Send alert with the message
+notify-send --urgency=low -i terminal "$message"
