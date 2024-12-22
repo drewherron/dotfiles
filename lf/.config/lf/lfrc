@@ -317,3 +317,14 @@ cmd newfold ${{
     mv -- $fx "$newd"
 }}
 map <a-n> newfold
+
+# Symlink selected files to location
+cmd symlink-selected ${{
+    set -f
+    # For each selected file in $fx, create a symlink in the current directory.
+    for file in $fx; do
+        ln -s "$file" .
+    done
+    # No prompt, no questions asked.
+}}
+
