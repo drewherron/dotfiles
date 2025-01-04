@@ -12,7 +12,7 @@ HISTTIMEFORMAT="%F %T "  # For interactive `history` display, though the real fi
 
 # Ignore duplicates and certain commands
 HISTCONTROL=ignoreboth
-HISTIGNORE="?:??:clear:cls:ls:ls *:ll:la:pwd:exit:date:* --help:history:history -d *"
+HISTIGNORE="clear:cls:ls:ll:la:pwd:exit:date:* --help:history:history -d *"
 
 # Append history instead of overwriting
 shopt -s histappend
