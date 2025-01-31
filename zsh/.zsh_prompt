@@ -1,3 +1,5 @@
+# Custom zsh prompt
+
 # Load version control info
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
@@ -6,22 +8,62 @@ autoload -Uz add-zsh-hook
 zstyle ':vcs_info:git:*' formats '[%b]'
 zstyle ':vcs_info:*' enable git
 
-# Define colors (based on my aldalome theme)
-typeset -A pc  # Declare associative array
-pc=(
-    host '%K{#ffb700}%F{#000000}' # Amber
-    git  '%F{#55ffff}'            # Cyan
-    std  '%F{#4aff00}'            # Green
-    reset '%f%k'                  # Reset color
+# Define a color_map for hex colors
+typeset -A color_map
+color_map=(
+  MAGENTA   '#ff55ff'
+  AMBER     '#ffb700'
+  CYAN      '#55ffff'
+  GREEN     '#4aff00'
+  BLACK     '#000000'
 )
 
-# Update vcs_info before each prompt
+# Associate host names to color names
+typeset -A host_bg_color
+host_bg_color=(
+  Ada       MAGENTA
+  Babbage   CYAN
+)
+# Default host color
+DEFAULT_COLOR_NAME=AMBER
+
+# Set up the colors for the prompt
+typeset -A pc
+pc=(
+  # Initialize host to default; override it at runtime.
+  host  "%K{${color_map[$DEFAULT_COLOR_NAME]}}%F{${color_map[BLACK]}}"
+  git   '%F{#55ffff}'
+  std   '%F{#4aff00}'
+  reset '%f%k'
+)
+
+# The prompt_precmd() function runs before each prompt
 prompt_precmd() {
-    vcs_info
+  vcs_info
+
+  local current_host="$HOST"    # or $HOSTNAME, or parse `print -P %m`
+  local c_name                  # We'll look up the color name from `host_bg_color`
+  
+  # If host is in color list, use it; otherwise use default
+  if [[ -n ${host_bg_color[$current_host]} ]]; then
+    c_name=${host_bg_color[$current_host]}
+  else
+    c_name=$DEFAULT_COLOR_NAME
+  fi
+
+  # Look up the hex code in color_map
+  local c_hex=${color_map[$c_name]:-#ffb700}  # fallback if something’s off
+
+  # Set pc[host] with text color black
+  pc[host]="%K{$c_hex}%F{#000000}"
 }
+
+# Hook our function to run before each prompt
 add-zsh-hook precmd prompt_precmd
 
-# Create the prompt
+# Turn on prompt substitution
 setopt PROMPT_SUBST
+
+# Create the final prompt
 PROMPT='${pc[host]} %m ${pc[reset]} ${pc[std]}%~${pc[reset]} ${pc[git]}${vcs_info_msg_0_}${pc[reset]}
 ${pc[std]} %n \$${pc[reset]} '
