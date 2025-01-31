@@ -1,0 +1,27 @@
+# Load version control info
+autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+
+# Configure vcs_info for git
+zstyle ':vcs_info:git:*' formats '[%b]'
+zstyle ':vcs_info:*' enable git
+
+# Define colors (based on my aldalome theme)
+typeset -A pc  # Declare associative array
+pc=(
+    host '%K{#ffb700}%F{#000000}' # Amber
+    git  '%F{#55ffff}'            # Cyan
+    std  '%F{#4aff00}'            # Green
+    reset '%f%k'                  # Reset color
+)
+
+# Update vcs_info before each prompt
+prompt_precmd() {
+    vcs_info
+}
+add-zsh-hook precmd prompt_precmd
+
+# Create the prompt
+setopt PROMPT_SUBST
+PROMPT='${pc[host]} %m ${pc[reset]} ${pc[std]}%~${pc[reset]} ${pc[git]}${vcs_info_msg_0_}${pc[reset]}
+${pc[std]} %n \$${pc[reset]} '

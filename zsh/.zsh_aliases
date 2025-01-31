@@ -1,0 +1,43 @@
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# List directory contents
+alias ll='ls -ahlF --group-directories-first'
+alias la='ls -A --group-directories-first'
+alias l='ls -CF --group-directories-first'
+alias tree='tree -C'
+
+# Safety features
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias rm='rm -vi'
+alias del='trash-put'
+
+# File operations
+alias cat='batcat'
+alias gh='history | grep'
+
+# Development
+alias py='python3'
+alias sa='source venv/bin/activate'
+
+# Editors
+alias e='emacsclient --tty'
+alias v='vim'
+
+# System
+alias cls='clear'
+alias zshreload='source ~/.zshrc && echo Zsh config reloaded'  # Changed from bashreload
+alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
+
+# Document viewers
+alias z='zathura'
+
+# Package management
+alias zyp='zypper'
+
+# Image viewers
+alias sxiv='sxivrun'
