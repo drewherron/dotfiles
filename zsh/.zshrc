@@ -1,3 +1,9 @@
+# Add extra directories to PATH
+export PATH="$PATH:/usr/local/apps/bin:$HOME/bin:$HOME/.local/bin:/usr/games"
+
+# Set MANPATH
+export MANPATH="/usr/local/man:/usr/man:/usr/share/man"
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
