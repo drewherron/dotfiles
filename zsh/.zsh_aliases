@@ -41,3 +41,6 @@ alias zyp='zypper'
 
 # Image viewers
 alias sxiv='sxivrun'
+
+# Custom lf
+alias lf='lfcd'

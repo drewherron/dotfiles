@@ -344,6 +344,13 @@ cmd symlink-selected ${{
     # No prompt, no questions asked.
 }}
 
+# Command to quit lf and cd to current directory in parent shell
+cmd q-cd ${{
+    pwd > "${XDG_CACHE_HOME:-$HOME/.cache}/lf/lastdir"
+    lf -remote "send $id quit"
+}}
+map Q q-cd
+
 # Keybindings
 map <a-p> mpv-play
 map <a-s> mpv-shuffle

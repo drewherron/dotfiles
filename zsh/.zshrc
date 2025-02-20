@@ -75,3 +75,14 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Function to drop out into directory from lf
+lfcd () {
+    local lastdir="${XDG_CACHE_HOME:-$HOME/.cache}/lf/lastdir"
+    mkdir -p "$(dirname "$lastdir")"
+    /usr/bin/lf -last-dir-path="$lastdir" "$@"
+    if [ -f "$lastdir" ]; then
+        cd "$(cat "$lastdir")"
+        rm -f "$lastdir"
+    fi
+}
