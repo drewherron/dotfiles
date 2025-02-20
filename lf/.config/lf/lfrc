@@ -131,7 +131,7 @@ cmd open ${{
         # ======================
         # e.g. .txt, .json, .srt, etc.
         text/*|application/json|inode/x-empty|application/x-subrip)
-            $EDITOR -nw $fx
+            /usr/bin/emacsclient --tty "$fx"
             ;;
 
         # ======================
@@ -177,7 +177,7 @@ cmd open ${{
         #  PGP
         # ======================
         application/pgp-encrypted)
-            $EDITOR -nw $fx
+            /usr/bin/emacsclient --tty $fx
             ;;
 
         # ======================
@@ -313,7 +313,7 @@ cmd bulk-rename ${{
     [ -n $fs ] && fs=$(ls)
     printf "$fs\n" > $old
     printf "$fs\n" > $new
-    $EDITOR $new
+    /usr/bin/emacsclient --tty $new
     [ $(cat $new | wc -l) -ne $(cat $old | wc -l) ] && exit
     paste $old $new | while read names; do
         src=$(printf $names | cut -f1)
