@@ -39,6 +39,10 @@ else
     echo "Warning: ~/bin/zshmarks.sh not found"
 fi
 
+# Try emacsclient, fall back to regular emacs if server isn't running
+export EDITOR="emacsclient --tty --alternate-editor=emacs"
+export VISUAL="emacsclient --tty --alternate-editor=emacs"
+
 # Emacs keybindings
 bindkey -e
 
