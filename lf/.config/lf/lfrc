@@ -88,10 +88,13 @@ cmd open ${{
         # ======================
         #  E-Books
         # ======================
-        # e.g. .epub
+        # e.g. .epub, .mobi, .azw3
         application/epub|\
-        application/epub+zip)
-            setsid -f zathura $fx >/dev/null 2>&1
+        application/epub+zip|\
+        application/x-mobipocket-ebook|\
+        application/vnd.amazon.ebook|\
+        application/x-mobi8-ebook)
+            setsid -f foliate $fx >/dev/null 2>&1
             ;;
 
         # ======================
