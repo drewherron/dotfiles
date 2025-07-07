@@ -67,6 +67,17 @@ setopt SHARE_HISTORY          # Share history across all sessions in real time
 setopt HIST_IGNORE_SPACE      # Don't save commands that start with a space
 setopt HIST_REDUCE_BLANKS     # Remove superfluous whitespace
 
+# Globbing options
+setopt EXTENDED_GLOB          # Enable extended globbing (*, ?, [], etc.)
+setopt GLOB_DOTS              # Include dotfiles in glob matches
+setopt NUMERIC_GLOB_SORT      # Sort globs numerically when possible
+setopt MARK_DIRS              # Add trailing slash to directory names from globs
+# setopt NULL_GLOB            # If no matches, remove the pattern (instead of error)
+# setopt NOMATCH              # Print error if glob has no matches (default)
+# setopt CSH_NULL_GLOB        # If no matches, remove pattern silently
+setopt CASE_GLOB              # Case-sensitive globbing (default, shown for clarity)
+# setopt NO_CASE_GLOB         # Case-insensitive globbing
+
 # Completion styles
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
