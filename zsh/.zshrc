@@ -51,6 +51,21 @@ export VISUAL="emacsclient --tty --alternate-editor=emacs"
 # Emacs keybindings
 bindkey -e
 
+# Emacs bulk file renaming
+#brnm() {
+#    emacsclient --tty --eval "(dired-rename-from-shell \"${1:-.}\")"
+#}
+brnm() {
+    local dir="${1:-.}"
+    # Check if we can write to the directory
+    if [[ -w "$dir" ]]; then
+        emacsclient --tty --eval "(dired-rename-from-shell \"$dir\")"
+    else
+        echo "Directory not writable, using sudo..."
+        emacsclient --tty --eval "(dired-rename-from-shell \"/sudo::$(realpath $dir)\")"
+    fi
+}
+
 # History settings
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
