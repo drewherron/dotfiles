@@ -4,6 +4,9 @@ export PATH="$PATH:/usr/local/apps/bin:$HOME/bin:$HOME/.local/bin:/usr/games"
 # Set MANPATH
 export MANPATH="/usr/local/man:/usr/man:/usr/share/man"
 
+# Set ZDOTDIR to use XDG-compliant directory
+export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -29,11 +32,11 @@ if [ -f "$HOME/SECRETS" ]; then
 fi
 
 # Source config files
-for config in "$HOME"/.{zsh_prompt,zsh_aliases}; do
+for config in "$ZDOTDIR"/.{zsh_prompt,zsh_aliases}; do
     if [ -f "$config" ]; then
         source "$config"
     else
-        echo "Warning: ${config#$HOME/} not found"
+        echo "Warning: ${config#$ZDOTDIR/} not found"
     fi
 done
 
