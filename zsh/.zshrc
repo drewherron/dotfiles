@@ -23,6 +23,11 @@ ls() {
     command ls --color=auto "$@"
 }
 
+# Source secrets file
+if [ -f "$HOME/SECRETS" ]; then
+    source "$HOME/SECRETS"
+fi
+
 # Source config files
 for config in "$HOME"/.{zsh_prompt,zsh_aliases}; do
     if [ -f "$config" ]; then
