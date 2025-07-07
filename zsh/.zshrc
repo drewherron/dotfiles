@@ -11,6 +11,11 @@ export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 autoload -Uz compinit
 compinit
 
+# Antidote plugin manager
+source "$ZDOTDIR/.antidote/antidote.zsh"
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
+
 # Colors
 # If `dircolors` is available, initialize $LS_COLORS from it.
 if command -v dircolors &> /dev/null; then
