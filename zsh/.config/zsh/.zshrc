@@ -11,6 +11,11 @@ export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 autoload -Uz compinit
 compinit
 
+# Auto-install antidote if not present
+if [[ ! -d "$ZDOTDIR/.antidote" ]]; then
+    echo "Installing antidote..."
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR/.antidote"
+fi
 # Antidote plugin manager
 source "$ZDOTDIR/.antidote/antidote.zsh"
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
