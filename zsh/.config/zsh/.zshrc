@@ -4,6 +4,10 @@ export PATH="$PATH:/usr/local/apps/bin:$HOME/bin:$HOME/.local/bin:/usr/games"
 # Set MANPATH
 export MANPATH="/usr/local/man:/usr/man:/usr/share/man"
 
+# Ensure XDG directories exist
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
+mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}"
 # Set ZDOTDIR to use XDG-compliant directory
 export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 
@@ -14,7 +18,12 @@ compinit
 # Auto-install antidote if not present
 if [[ ! -d "$ZDOTDIR/.antidote" ]]; then
     echo "Installing antidote..."
-    git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR/.antidote"
+    if git clone --depth=1 https://github.com/mattmc3/antidote.git "$ZDOTDIR/.antidote"; then
+        echo "Antidote installed successfully!"
+    else
+        echo "Failed to install antidote."
+        return 1
+    fi
 fi
 # Antidote plugin manager
 source "$ZDOTDIR/.antidote/antidote.zsh"
@@ -50,12 +59,12 @@ for config in "$ZDOTDIR"/.{zsh_prompt,zsh_aliases}; do
     fi
 done
 
-# Load bashmarks (if available)
-if [ -f "$HOME/bin/zshmarks.sh" ]; then
-    source "$HOME/bin/zshmarks.sh"
-else
-    echo "Warning: ~/bin/zshmarks.sh not found"
-fi
+## Load bashmarks (if available)
+#if [ -f "$HOME/bin/zshmarks.sh" ]; then
+#    source "$HOME/bin/zshmarks.sh"
+#else
+#    echo "Warning: ~/bin/zshmarks.sh not found"
+#fi
 
 # Try emacsclient, fall back to regular emacs if server isn't running
 export EDITOR="emacsclient --tty --alternate-editor=emacs"
