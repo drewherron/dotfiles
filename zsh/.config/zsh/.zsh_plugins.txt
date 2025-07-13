@@ -1,1 +1,3 @@
 mfaerevaag/wd
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
