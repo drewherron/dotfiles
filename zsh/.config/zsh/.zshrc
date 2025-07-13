@@ -11,6 +11,9 @@ mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}"
 # Set ZDOTDIR to use XDG-compliant directory
 export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 
+# Add wd's directory to fpath for completion
+fpath=(/home/drew/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-mfaerevaag-SLASH-wd $fpath)
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
