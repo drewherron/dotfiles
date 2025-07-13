@@ -43,4 +43,4 @@ alias zyp='zypper'
 alias sxiv='sxivrun'
 
 # Custom lf
-alias lf='lfcd'
+alias lf='lfrun'
