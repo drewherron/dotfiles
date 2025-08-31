@@ -32,6 +32,7 @@ alias v='vim'
 alias cls='clear'
 alias zshreload='source ~/.zshrc && echo Zsh config reloaded'  # Changed from bashreload
 alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
+#alias U='sudo dnf -y upgrade && sudo dnf -y autoremove && sudo dnf clean packages && flatpak update -y'
 
 # Document viewers
 alias z='zathura'
