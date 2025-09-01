@@ -3,14 +3,14 @@
 	name = Drew Herron
 	username = drewherron
 [core]
-	editor = vim
+	editor = emacs
 	excludesfile = /home/drew/.gitignore
 [pager]
     branch = false
 [pull]
     rebase = false
 [diff]
-	tool = vimdiff
+	tool = emerge
 [delta]
 	features = line-numbers decorations
 	line-numbers = true
