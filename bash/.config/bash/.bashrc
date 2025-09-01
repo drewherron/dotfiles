@@ -21,7 +21,7 @@ else
 fi
 
 # Load additional configurations
-for config in "$HOME"/.{bash_prompt,bash_aliases,bash_history_config}; do
+for config in "$HOME"/.config/bash/.{bash_prompt,bash_aliases,bash_history_config}; do
     if [ -f "$config" ]; then
         source "$config"
     else

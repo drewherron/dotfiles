@@ -1,8 +1,8 @@
 # .bash_profile is executed for login shells
 
 # Load bashrc for login shells too
-if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
+if [ -f "$HOME/.config/bash/.bashrc" ]; then
+    source "$HOME/.config/bash/.bashrc"
 fi
 
 # SSH Agent configuration
