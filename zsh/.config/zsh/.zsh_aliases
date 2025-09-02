@@ -5,9 +5,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # List directory contents
-alias ll='ls -ahlF --group-directories-first'
-alias la='ls -A --group-directories-first'
-alias l='ls -CF --group-directories-first'
+alias ls='ls -hF --color=auto'
+alias ll='ls -lAhF --color=auto --group-directories-first'
 alias tree='tree -C'
 
 # Safety features
@@ -17,7 +16,7 @@ alias rm='rm -vi'
 alias del='trash-put'
 
 # File operations
-alias cat='batcat'
+alias cat='bat'
 alias gh='history | grep'
 
 # Development
@@ -30,15 +29,15 @@ alias v='vim'
 
 # System
 alias cls='clear'
-alias zshreload='source ~/.zshrc && echo Zsh config reloaded'  # Changed from bashreload
-alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
-#alias U='sudo dnf -y upgrade && sudo dnf -y autoremove && sudo dnf clean packages && flatpak update -y'
+alias zshreload='source ~/.config/zsh/.zshrc && echo Zsh config reloaded'
+#alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
+alias U='sudo dnf -y upgrade && sudo dnf -y autoremove && sudo dnf clean packages && flatpak update -y'
 
 # Document viewers
 alias z='zathura'
 
 # Package management
-alias zyp='zypper'
+#alias zyp='zypper'
 
 # Image viewers
 alias sxiv='sxivrun'
