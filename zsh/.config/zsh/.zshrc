@@ -43,11 +43,6 @@ fi
 # export CLICOLOR=1
 # export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Wrap `ls` in a function to always use color (GNU ls).
-ls() {
-    command ls --color=auto "$@"
-}
-
 # Source secrets file
 if [ -f "$HOME/SECRETS" ]; then
     source "$HOME/SECRETS"
@@ -62,13 +57,6 @@ for config in "$ZDOTDIR"/.{zsh_prompt,zsh_aliases}; do
     fi
 done
 
-## Load bashmarks (if available)
-#if [ -f "$HOME/bin/zshmarks.sh" ]; then
-#    source "$HOME/bin/zshmarks.sh"
-#else
-#    echo "Warning: ~/bin/zshmarks.sh not found"
-#fi
-
 # Try emacsclient, fall back to regular emacs if server isn't running
 export EDITOR="emacsclient --tty --alternate-editor=emacs"
 export VISUAL="emacsclient --tty --alternate-editor=emacs"
@@ -77,9 +65,6 @@ export VISUAL="emacsclient --tty --alternate-editor=emacs"
 bindkey -e
 
 # Emacs bulk file renaming
-#brnm() {
-#    emacsclient --tty --eval "(dired-rename-from-shell \"${1:-.}\")"
-#}
 brnm() {
     local dir="${1:-.}"
     # Check if we can write to the directory
