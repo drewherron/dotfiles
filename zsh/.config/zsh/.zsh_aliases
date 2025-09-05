@@ -5,7 +5,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # List directory contents
-alias ls='ls -hF --color=auto'
+alias ls='ls -hF --color=auto --group-directories-first'
 alias ll='ls -lAhF --color=auto --group-directories-first'
 alias tree='tree -C'
 
