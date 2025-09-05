@@ -33,6 +33,7 @@ alias zshreload='source ~/.config/zsh/.zshrc && echo Zsh config reloaded'
 #alias U='sudo apt -y update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y autoclean'
 alias U='sudo dnf -y upgrade && sudo dnf -y autoremove && sudo dnf clean packages && flatpak update -y'
 
+alias sus='slock_off && systemctl suspend'
 # Document viewers
 alias z='zathura'
 
