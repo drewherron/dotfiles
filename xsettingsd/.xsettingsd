@@ -1,0 +1,4 @@
+Net/ThemeName "Adwaita-dark"
+Net/IconThemeName "Adwaita"
+Gtk/CursorThemeName "Adwaita"
+Gtk/FontName "Noto Sans Light 10"
