@@ -132,7 +132,7 @@ lfcd () {
     fi
 }
 
-# Better pass function
+# Copy arbitrary fields from pass
 pass() {
   if [[ "$1" == "-c" && $# -ge 3 ]]; then
     local entry="$2"
@@ -151,6 +151,25 @@ pass() {
     command pass "$@"
   fi
 }
+# Fix autocomplete for those fields
+_pass_complete_with_fields() {
+  # Check if this is "pass -c <entry> <TAB>" (completing field name)
+  if [[ $words[2] == "-c" && $CURRENT -eq 4 ]]; then
+    local entry="${words[3]}"
+    if command pass show "$entry" &>/dev/null; then
+      local -a fields
+      fields=($(command pass show "$entry" | tail -n +2 | awk -F': *' '/^[^:]+:/{print $1}'))
+      _describe 'pass fields' fields
+      return 0
+    fi
+  fi
+
+  # Fallback to default pass completion
+  _pass "$@"
+}
+
+# Replace the default completer for "pass"
+compdef _pass_complete_with_fields pass
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
