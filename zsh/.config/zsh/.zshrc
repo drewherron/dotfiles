@@ -132,6 +132,26 @@ lfcd () {
     fi
 }
 
+# Better pass function
+pass() {
+  if [[ "$1" == "-c" && $# -ge 3 ]]; then
+    local entry="$2"
+    local field="$3"
+    local value
+    value=$(command pass show "$entry" \
+      | awk -F': *' -v key="$field" 'NR>1 && $1 == key { print $2; exit }')
+    if [[ -n "$value" ]]; then
+      printf "%s" "$value" | xclip -selection clipboard
+      echo "Copied $field from $entry to clipboard."
+    else
+      echo "Field '$field' not found in $entry" >&2
+      return 1
+    fi
+  else
+    command pass "$@"
+  fi
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
