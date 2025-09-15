@@ -17,7 +17,8 @@ alias del='trash-put'
 
 # File operations
 alias cat='bat'
-alias gh='history | grep'
+# Search all history
+gh() { history 1 | grep "$@" }
 
 # Development
 alias py='python3'
