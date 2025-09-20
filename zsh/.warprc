@@ -1,3 +1,4 @@
+
 aldalome:~/Projects/aldalome
 code:~/Projects/Code
 config:~/.config
@@ -8,6 +9,7 @@ documents:~/Documents
 dot:~/dotfiles
 dwm:~/src/dwm
 emacs:~/.config/emacs
+employment:~/Documents/Employment
 fin:~/Documents/Finance
 keyboard:~/Projects/keyboard
 music:~/Music
@@ -19,7 +21,7 @@ projects:~/Projects
 pro:~/Projects
 psu:~/Documents/PSU
 psu:~/Documents/PSU
-resume:~/Documents/Employment/resume
+resumes:~/Documents/Employment/resumes
 src:~/src
 st:~/src/st
 sync:~/Sync
