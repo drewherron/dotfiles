@@ -21,16 +21,20 @@ set ifs "\n"
 set scrolloff 10
 
 set filesep "\n"      # default already
-set icons on          # show icons next to files
+set icons false       # don't show icons next to files
 set period 1          # interval to check for directory updates
-set hidden on         # show hidden files by default
-set incsearch on      # jump to first match after each keystroke in search
-set ignorecase on
-set dircounts on      # show number of items in directory instead of sie
+set hidden true       # show hidden files by default
+set incsearch true    # jump to first match after each keystroke in search
+set ignorecase true
+set dircounts true    # show number of items in directory instead of size
 set info "size"       # list directory information on the right
 set sortby "natural"  # don't sort files in any special way
-set preview on        # preview file on the right pane
-#set drawbox on        # draw a border around all panes
+set preview true      # preview file on the right pane
+#set drawbox true      # draw a border around all panes
+
+#set cursorpreviewfmt "\033[7;2m"  # use dim cursor in preview instead of underline
+set incfilter true     # filter files incrementally while typing
+#set dirpreviews true  # seems to break previews...
 #set ratios '1:2:3'    # ratio of pane widths
 #set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 
@@ -355,6 +359,7 @@ cmd q-cd ${{
 map Q q-cd
 
 # Keybindings
+map f filter       # filter files (with incfilter enabled)
 map <a-p> mpv-play
 map <a-s> mpv-shuffle
 map <a-r> bulk-rename
