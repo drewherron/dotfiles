@@ -1,0 +1,25 @@
+#!/bin/bash
+
+NAME=$(basename "$1")
+LOC=$(dirname "$1")
+
+# Change to the directory containing the image
+cd "$LOC"
+
+# Find only image files and sort them alphabetically
+image_files=()
+while IFS= read -r -d '' file; do
+    image_files+=("$file")
+done < <(find . -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' -o -iname '*.bmp' -o -iname '*.webp' -o -iname '*.tiff' -o -iname '*.tif' \) -printf '%f\0' | sort -zV)
+
+# Find the index of the selected image
+start_index=1
+for i in "${!image_files[@]}"; do
+    if [[ "${image_files[$i]}" = "$NAME" ]]; then
+        start_index=$((i+1))
+        break
+    fi
+done
+
+# Open nsxiv with only image files, starting at the selected image
+printf '%s\n' "${image_files[@]}" | nsxiv -fin "$start_index"
