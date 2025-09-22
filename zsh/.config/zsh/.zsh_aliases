@@ -45,4 +45,4 @@ alias z='zathura'
 #alias sxiv='sxivrun'
 
 # Custom lf
-#alias lf='lfrun'
+alias lf='lfrun'
