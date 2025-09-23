@@ -5,6 +5,7 @@
 [core]
 	editor = emacs
 	excludesfile = /home/drew/.gitignore
+    pager = delta
 [pager]
     branch = false
 [pull]
@@ -12,8 +13,33 @@
 [diff]
 	tool = emerge
 [delta]
-	features = line-numbers decorations
+	features = line-numbers decorations aldalome-theme
 	line-numbers = true
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[delta "aldalome-theme"]
+    # Aldalome color scheme
+    syntax-theme = aldalome
+    minus-style = "syntax #4c1000"
+    minus-emph-style = "syntax #ff5555"
+    plus-style = "syntax #164c00"
+    plus-emph-style = "syntax #55ff55"
+    hunk-header-style = "file line-number syntax"
+    hunk-header-decoration-style = "#4aff00"
+    file-style = "#4aff00 bold"
+#    file-decoration-style = "#ffb700"
+    file-decoration-style = "#4aff00"
+    line-numbers-minus-style = "#aa0000"
+    line-numbers-plus-style = "#4aff00"
+    line-numbers-zero-style = "#555555"
+    line-numbers-left-style = "#4aff00"
+    line-numbers-right-style = "#4aff00"
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictStyle = zdiff3
+
 #[alias] #maybe later...
 #	a = add --all
 #	b = branch
