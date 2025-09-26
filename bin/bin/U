@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# OS-agnostic system update script
+# Detects the distribution and runs appropriate update commands
+
+set -e
+
+# Detect the Linux distribution
+if command -v pacman &> /dev/null; then
+    # Arch Linux
+    echo "Detected Arch Linux - using pacman"
+    sudo pacman -Syu --noconfirm
+    sudo pacman -Rns $(pacman -Qtdq) --noconfirm 2>/dev/null || true
+elif command -v dnf &> /dev/null; then
+    # Fedora
+    echo "Detected Fedora - using dnf"
+    sudo dnf -y upgrade
+    sudo dnf -y autoremove
+    sudo dnf clean packages
+elif command -v apt &> /dev/null; then
+    # Debian/Ubuntu
+    echo "Detected Debian/Ubuntu - using apt"
+    sudo apt -y update
+    sudo apt -y upgrade
+    sudo apt -y autoremove
+    sudo apt -y autoclean
+else
+    echo "Unsupported distribution or package manager not found"
+    exit 1
+fi
+
+# Update Flatpak if available
+if command -v flatpak &> /dev/null; then
+    echo "Updating Flatpak packages..."
+    flatpak update -y
+fi
+
+echo "System update complete!"
