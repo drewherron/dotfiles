@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=obsidian.sh md.obsidian.Obsidian "$@"
