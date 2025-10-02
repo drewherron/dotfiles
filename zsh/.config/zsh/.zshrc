@@ -43,9 +43,11 @@ fi
 # export CLICOLOR=1
 # export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Source secrets file
+# Source secrets file (KEY=value format for systemd compatibility)
 if [ -f "$HOME/SECRETS" ]; then
+    set -a  # automatically export all variables
     source "$HOME/SECRETS"
+    set +a  # turn off auto-export
 fi
 
 # Source config files
