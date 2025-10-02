@@ -22,9 +22,9 @@
     # Aldalome color scheme
     syntax-theme = aldalome
     minus-style = "syntax #4c1000"
-    minus-emph-style = "syntax #ff5555"
-    plus-style = "syntax #164c00"
-    plus-emph-style = "syntax #55ff55"
+    minus-emph-style = "syntax #AA0000"
+    plus-style = "syntax #005e00"
+    plus-emph-style = "syntax #002300"
     hunk-header-style = "file line-number syntax"
     hunk-header-decoration-style = "#4aff00"
     file-style = "#4aff00 bold"
