@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check each subdirectory (and current directory) for git repos with changes
+
+check_repo() {
+    local dir="$1"
+    local display_name="$2"
+
+    # Check if it's the root of a git repository
+    if [ -e "$dir/.git" ]; then
+        # Check if there are any changes using porcelain format
+        if [ -n "$(cd "$dir" && git status --porcelain 2>/dev/null)" ]; then
+            echo "=== $display_name ==="
+            (cd "$dir" && git status 2>/dev/null | \
+                grep -v "^  (use " | \
+                grep -v "^$" | \
+                sed '/^Changes to be committed:/a\' | \
+                sed '/^Changes not staged for commit:/a\' | \
+                sed '/^Untracked files:/a\')
+            echo
+        fi
+    fi
+}
+
+# Check current directory
+check_repo "." "."
+
+# Check subdirectories
+for dir in */; do
+    # Remove trailing slash
+    dir="${dir%/}"
+    check_repo "$dir" "$dir"
+done
