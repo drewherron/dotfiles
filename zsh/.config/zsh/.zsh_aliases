@@ -25,7 +25,7 @@ alias py='python3'
 alias sa='source venv/bin/activate'
 
 # Editors
-alias e='emacsclient --tty'
+alias e='emacsclient --alternate-editor=""'
 alias v='vim'
 
 # System
