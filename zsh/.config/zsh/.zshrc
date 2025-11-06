@@ -141,7 +141,7 @@ pass() {
     local field="$3"
     local value
     value=$(command pass show "$entry" \
-      | awk -F': *' -v key="$field" 'NR>1 && $1 == key { print $2; exit }')
+      | awk -v key="$field" 'NR>1 && $0 ~ "^" key ": " { sub(/^[^:]+: */, ""); print; exit }')
     if [[ -n "$value" ]]; then
       printf "%s" "$value" | xclip -selection clipboard
       echo "Copied $field from $entry to clipboard."
