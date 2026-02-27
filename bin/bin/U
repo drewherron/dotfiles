@@ -22,6 +22,15 @@ elif command -v dnf &> /dev/null; then
     sudo dnf -y upgrade
     sudo dnf -y autoremove
     sudo dnf clean packages
+elif command -v zypper &> /dev/null; then
+    # OpenSUSE
+    echo "Detected OpenSUSE - using zypper:"
+    echo "  sudo zypper refresh"
+    echo "  sudo zypper update -y"
+    echo "  sudo zypper clean -a"
+    sudo zypper refresh
+    sudo zypper update -y
+    sudo zypper clean -a
 elif command -v apt &> /dev/null; then
     # Debian/Ubuntu
     echo "Detected Debian/Ubuntu - using apt:"
