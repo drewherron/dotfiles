@@ -8,18 +8,27 @@ set -e
 # Detect the Linux distribution
 if command -v pacman &> /dev/null; then
     # Arch Linux
-    echo "Detected Arch Linux - using pacman"
+    echo "Detected Arch Linux - using pacman:"
+    echo "  sudo pacman -Syu --noconfirm"
+    echo "  sudo pacman -Rns \$(pacman -Qtdq) --noconfirm"
     sudo pacman -Syu --noconfirm
     sudo pacman -Rns $(pacman -Qtdq) --noconfirm 2>/dev/null || true
 elif command -v dnf &> /dev/null; then
     # Fedora
-    echo "Detected Fedora - using dnf"
+    echo "Detected Fedora - using dnf:"
+    echo "  sudo dnf -y upgrade"
+    echo "  sudo dnf -y autoremove"
+    echo "  sudo dnf clean packages"
     sudo dnf -y upgrade
     sudo dnf -y autoremove
     sudo dnf clean packages
 elif command -v apt &> /dev/null; then
     # Debian/Ubuntu
-    echo "Detected Debian/Ubuntu - using apt"
+    echo "Detected Debian/Ubuntu - using apt:"
+    echo "  sudo apt -y update"
+    echo "  sudo apt -y upgrade"
+    echo "  sudo apt -y autoremove"
+    echo "  sudo apt -y autoclean"
     sudo apt -y update
     sudo apt -y upgrade
     sudo apt -y autoremove
