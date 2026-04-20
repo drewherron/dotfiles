@@ -170,7 +170,7 @@ cmd open ${{
         audio/*)
             clear
             exiftool "$f"
-            mpv "$f" >/dev/null
+            mpv "$f"
             ;;
         
         # ======================
