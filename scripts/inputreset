@@ -1,0 +1,23 @@
+#!/bin/bash
+# Resets the i8042 controller (ThinkPad keyboard/trackpoint/mouse buttons)
+# and restarts kmonad. Fixes the issue where trackpad works but mouse
+# buttons stop responding.
+
+set -e
+
+sudo -v
+
+echo "Unbinding i8042..."
+echo -n "i8042" | sudo tee /sys/bus/platform/drivers/i8042/unbind > /dev/null
+sleep 1
+
+echo "Rebinding i8042..."
+echo -n "i8042" | sudo tee /sys/bus/platform/drivers/i8042/bind > /dev/null
+sleep 1
+
+if systemctl --user is-active --quiet kmonad.service; then
+    echo "Restarting kmonad..."
+    systemctl --user restart kmonad.service
+fi
+
+echo "Done."
