@@ -10,9 +10,22 @@ if bluetoothctl info "$DEVICE_MAC" | grep -q "Connected: yes"; then
     bluetoothctl disconnect "$DEVICE_MAC"
 else
     echo "Device is disconnected. Scanning..."
-    bluetoothctl --timeout 5 scan on > /dev/null
+    bluetoothctl --timeout 30 scan on > /dev/null &
+    SCAN_PID=$!
+
+    for i in $(seq 1 30); do
+        if bluetoothctl info "$DEVICE_MAC" 2>/dev/null | grep -q "RSSI:"; then
+            echo "Device found."
+            break
+        fi
+        sleep 0.5
+    done
+
     echo "Connecting..."
     bluetoothctl connect "$DEVICE_MAC"
+
+    kill "$SCAN_PID" 2>/dev/null
+    wait "$SCAN_PID" 2>/dev/null
 fi
 
 ## Reminder, if it won't connect without scanning first:
