@@ -22,7 +22,17 @@ gh() { history 1 | grep "$@" }
 
 # Development
 alias py='python3'
-alias sa='source venv/bin/activate'
+# Activate a Python venv, preferring .venv over venv
+sa() {
+  if [[ -f .venv/bin/activate ]]; then
+    source .venv/bin/activate
+  elif [[ -f venv/bin/activate ]]; then
+    source venv/bin/activate
+  else
+    echo "sa: no .venv or venv found in $PWD" >&2
+    return 1
+  fi
+}
 
 # Editors
 alias e='emacsclient --alternate-editor=""'
