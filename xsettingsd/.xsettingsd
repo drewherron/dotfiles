@@ -1,4 +1,5 @@
-Net/ThemeName "Adwaita-dark"
+Net/ThemeName "Adwaita"
 Net/IconThemeName "Adwaita"
 Gtk/CursorThemeName "Adwaita"
 Gtk/FontName "Noto Sans Light 10"
+Gtk/ApplicationPreferDarkTheme 1
