@@ -1,0 +1,4 @@
+[Unit]
+Description=dwm graphical session
+Requires=graphical-session.target
+After=graphical-session.target
